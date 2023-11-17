@@ -1,0 +1,12 @@
+F:\Ilya\Programming\informationSecurity\firstTask\bin\Debug\firstTask.exe
+F:\Ilya\Programming\informationSecurity\firstTask\bin\Debug\firstTask.pdb
+F:\Ilya\Programming\informationSecurity\firstTask\obj\Debug\firstTask.exe
+F:\Ilya\Programming\informationSecurity\firstTask\obj\Debug\firstTask.pdb
+F:\Ilya\Programming\informationSecurity\firstTask\bin\Debug\mscorlib.dll
+F:\Ilya\Programming\informationSecurity\firstTask\bin\Debug\ru\mscorlib.resources.dll
+F:\Ilya\Programming\informationSecurity\firstTask\bin\Debug\normidna.nlp
+F:\Ilya\Programming\informationSecurity\firstTask\bin\Debug\normnfc.nlp
+F:\Ilya\Programming\informationSecurity\firstTask\bin\Debug\normnfd.nlp
+F:\Ilya\Programming\informationSecurity\firstTask\bin\Debug\normnfkc.nlp
+F:\Ilya\Programming\informationSecurity\firstTask\bin\Debug\normnfkd.nlp
+F:\Ilya\Programming\informationSecurity\firstTask\obj\Debug\firstTask.csprojResolveAssemblyReference.cache
