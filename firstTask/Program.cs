@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -6,10 +7,11 @@ namespace informationSecurity
 {
   internal abstract class Program
   {
+    // files path
     private const string Path = @".\Contents\";
 
     // encryption method
-    private static string _encryptionMethod()
+    private static (string, Dictionary<string, string>) _encryptionMethod()
     {
       string[] arrKey;
       string strInput;
@@ -32,21 +34,47 @@ namespace informationSecurity
         if (alphabet.ContainsKey(Convert.ToString(sym))) strOut += alphabet[Convert.ToString(sym)]; 
         else strOut += '-';
       }
+
+      using (var sw = new StreamWriter($"{Path}Out.txt"))
+      {
+        sw.Write(strOut);
+      }
       
-      return strOut.ToUpper();
+      return (strOut.ToUpper(), alphabet);
     }
 
     // decryption method
-    private static string _decryptionMehtod() 
+    private static string _decryptionMethod()
     {
-        
-      return "str";
+      var strOut = _encryptionMethod().Item1.ToLower().Split('-');
+      var alphabet = _encryptionMethod().Item2;
+      var strResult = string.Empty;
+
+      foreach (var VARIABLE in strOut)
+      {
+        Console.WriteLine(VARIABLE);
+      }
+      
+      // for (var i = 0; i < strOut.Length; i++)
+      // {
+      //   foreach (var sym in alphabet)
+      //   {
+      //     if (sym.Value == Convert.ToString(strOut[i])) strResult += sym.Key;
+      //     else if (strOut.Contains(strOut[i + 1]) && sym.Value == $"{strOut[i]}{strOut[i + 1]}") strResult += sym.Key;
+      //     else strResult += " ";
+      //   }
+      // }
+      
+      Console.WriteLine(strResult);
+      
+      return strResult.ToLower();
     }
 
     // main method 
     public static void Main(string[] args)
     {
-       Console.WriteLine($"Encryption text is: {_encryptionMethod()}");
+       //Console.WriteLine($"Encryption text is: {_encryptionMethod()}");
+       _decryptionMethod();
     }
   }
 }
