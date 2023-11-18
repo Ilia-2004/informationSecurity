@@ -78,3 +78,90 @@ namespace informationSecurity
     }
   }
 }
+
+
+using System;
+using System.IO;
+
+class Program
+{
+  static void Main(string[] args)
+  {
+    string inputPath = "Input.txt";
+    string outputPath = "Out.txt";
+    string keyPath = "Key.txt";
+
+    // Read the input text from the file
+    string inputText = File.ReadAllText(inputPath);
+
+    // Read the key from the file
+    string key = File.ReadAllText(keyPath);
+
+    // Convert the input text to uppercase
+    inputText = inputText.ToUpper();
+
+    // Replace the letters in the input text with the corresponding letters from the key
+    string outputText = "";
+    foreach (char c in inputText)
+    {
+      if (c >= 'А' && c <= 'Я')
+      {
+        outputText += key[c - 'А'];
+      }
+      else if (c == 'Ё')
+      {
+        outputText += key['Е' - 'А'];
+      }
+      else
+      {
+        outputText += c;
+      }
+    }
+
+    // Write the output text to the file
+    File.WriteAllText(outputPath, outputText);
+  }
+}
+
+using System;
+using System.IO;
+
+class Program
+{
+  static void Main(string[] args)
+  {
+    string inputPath = "Out.txt";
+    string outputPath = "Result.txt";
+    string keyPath = "Key.txt";
+
+    // Read the encoded text from the file
+    string encodedText = File.ReadAllText(inputPath);
+
+    // Read the key from the file
+    string key = File.ReadAllText(keyPath);
+
+    // Replace the letters in the encoded text with the corresponding letters from the key
+    string decodedText = "";
+    foreach (char c in encodedText)
+    {
+      if (c >= 'А' && c <= 'Я')
+      {
+        decodedText += (char)('А' + key.IndexOf(c));
+      }
+      else if (c == 'Ё')
+      {
+        decodedText += 'Е';
+      }
+      else
+      {
+        decodedText += c;
+      }
+    }
+
+    // Convert the decoded text to lowercase
+    decodedText = decodedText.ToLower();
+
+    // Write the decoded text to the file
+    File.WriteAllText(outputPath, decodedText);
+  }
+}
