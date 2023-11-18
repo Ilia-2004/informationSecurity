@@ -1,23 +1,39 @@
-﻿using System;
+using System;
 using System.IO;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace informationSecurity
 {
   internal abstract class Program
   {
-    private static string _path = @".\Contents\Key.txt";
+    private const string Path = @".\Contents\";
+
     // encryption method
     private static string _encryptionMethod()
     {
-      var alphabet = new Dictionary<char, string>();
-
-      using (FileStream fstream = File.OpenRead(_path))
+      string[] arrKey;
+      string strInput;
+      var strOut = string.Empty; 
+      using (var stream = new StreamReader($"{Path}Key.txt"))
       {
-        var strKey = fstream;
-        Console.WriteLine(strKey);
+        var strKey = stream.ReadToEnd();
+        arrKey = strKey.Split(',');
       }
-      return "str";
+      var alphabet = arrKey.ToDictionary(t => t.Split('-')[0].Trim(), 
+                                                              t => t.Split('-')[1]);
+
+      using (var stream = new StreamReader($"{Path}Input.txt"))
+      {
+        strInput = stream.ReadToEnd().ToUpper();
+      }
+
+      foreach (var sym in strInput)
+      {
+        if (alphabet.ContainsKey(Convert.ToString(sym))) strOut += alphabet[Convert.ToString(sym)]; 
+        else strOut += '-';
+      }
+      
+      return strOut.ToUpper();
     }
 
     // decryption method
@@ -30,9 +46,7 @@ namespace informationSecurity
     // main method 
     public static void Main(string[] args)
     {
-       _encryptionMethod();
-
-       Console.WriteLine("Hello");
+       Console.WriteLine($"Encryption text is: {_encryptionMethod()}");
     }
   }
 }
