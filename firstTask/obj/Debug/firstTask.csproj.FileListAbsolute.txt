@@ -11,3 +11,9 @@ D:\isp-42\krasnekov\firstTask\bin\Debug\firstTask.pdb
 F:\Ilya\Programming\informationSecurity\firstTask\obj\Debug\firstTask.csproj.AssemblyReference.cache
 F:\Ilya\Programming\informationSecurity\firstTask\obj\Debug\firstTask.csproj.SuggestedBindingRedirects.cache
 F:\Ilya\Programming\informationSecurity\firstTask\obj\Debug\firstTask.csproj.CoreCompileInputs.cache
+D:\IS Krass\firstTask\bin\Debug\firstTask.exe
+D:\IS Krass\firstTask\bin\Debug\firstTask.pdb
+D:\IS Krass\firstTask\obj\Debug\firstTask.csproj.AssemblyReference.cache
+D:\IS Krass\firstTask\obj\Debug\firstTask.csproj.CoreCompileInputs.cache
+D:\IS Krass\firstTask\obj\Debug\firstTask.exe
+D:\IS Krass\firstTask\obj\Debug\firstTask.pdb

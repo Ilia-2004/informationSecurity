@@ -1,16 +1,26 @@
 ﻿using System;
+using System.IO;
 
 namespace secondTask
 {
   internal abstract class Program
   {
+    // files path
+    private const string Path = @".\Contents\";
     public static void Main(string[] args)
     {
-      Console.Write("Введите строку: ");
-      var input = Console.ReadLine();
+            //Console.Write("Введите строку: ");
+            //var input = Console.ReadLine();
+            var input = string.Empty;
+            var strOut = string.Empty;
+            using (var stream = new StreamReader($"{Path}Input.txt"))
+            {
+                input = stream.ReadToEnd();
+                //arrKey = strKey.Split(',');
+            }
 
-      // Переворачиваем строку
-      var reversed = input.ToCharArray();
+            // Переворачиваем строку
+            var reversed = input.ToCharArray();
       Array.Reverse(reversed);
       var reversedString = new string(reversed);
 

@@ -1,0 +1,6 @@
+D:\IS Krass\secondTask\bin\Debug\secondTask.exe
+D:\IS Krass\secondTask\bin\Debug\secondTask.pdb
+D:\IS Krass\secondTask\obj\Debug\secondTask.csproj.AssemblyReference.cache
+D:\IS Krass\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
+D:\IS Krass\secondTask\obj\Debug\secondTask.exe
+D:\IS Krass\secondTask\obj\Debug\secondTask.pdb
