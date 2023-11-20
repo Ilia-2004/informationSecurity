@@ -4,3 +4,9 @@ D:\IS Krass\thirdTask\obj\Debug\thirdTask.csproj.AssemblyReference.cache
 D:\IS Krass\thirdTask\obj\Debug\thirdTask.csproj.CoreCompileInputs.cache
 D:\IS Krass\thirdTask\obj\Debug\thirdTask.exe
 D:\IS Krass\thirdTask\obj\Debug\thirdTask.pdb
+D:\isp-42\Krasnenkov\thirdTask\bin\Debug\thirdTask.exe
+D:\isp-42\Krasnenkov\thirdTask\bin\Debug\thirdTask.pdb
+D:\isp-42\Krasnenkov\thirdTask\obj\Debug\thirdTask.csproj.AssemblyReference.cache
+D:\isp-42\Krasnenkov\thirdTask\obj\Debug\thirdTask.csproj.CoreCompileInputs.cache
+D:\isp-42\Krasnenkov\thirdTask\obj\Debug\thirdTask.exe
+D:\isp-42\Krasnenkov\thirdTask\obj\Debug\thirdTask.pdb
