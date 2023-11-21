@@ -13,46 +13,40 @@ namespace informationSecurity
     // encryption method
     private static (string, Dictionary<string, string>) _encryptionMethod()
     {
-      string[] arrKey;
-      string strInput;
-      var strOut = string.Empty; 
-      using (var stream = new StreamReader($"{Path}Key.txt"))
+      string[] arrayKey;
+      string inputText;
+      var outputText = string.Empty; 
+      using (var sr = new StreamReader($"{Path}Key.txt"))
       {
-        var strKey = stream.ReadToEnd();
-        arrKey = strKey.Split(',');
+        var stringKey = sr.ReadToEnd();
+        arrayKey = stringKey.Split(',');
       }
-      var alphabet = arrKey.ToDictionary(t => t.Split('-')[0].Trim(), 
+      var alphabet = arrayKey.ToDictionary(t => t.Split('-')[0].Trim(), 
                                                               t => t.Split('-')[1]);
 
-      using (var stream = new StreamReader($"{Path}Input.txt"))
-      {
-        strInput = stream.ReadToEnd().ToUpper();
-      }
+      using (var sr = new StreamReader($"{Path}Input.txt")) { inputText = sr.ReadToEnd().ToUpper(); }
 
-      foreach (var sym in strInput)
+      foreach (var symbol in inputText)
       {
-        if (alphabet.ContainsKey(Convert.ToString(sym))) strOut += alphabet[Convert.ToString(sym)]; 
-        else strOut += '-';
-      }
-
-      using (var sw = new StreamWriter($"{Path}Out.txt"))
-      {
-        sw.Write(strOut);
+        if (alphabet.ContainsKey(Convert.ToString(symbol))) outputText += alphabet[Convert.ToString(symbol)]; 
+        else outputText += '-';
       }
       
-      return (strOut.ToUpper(), alphabet);
+      using (var sw = new StreamWriter($"{Path}Out.txt")) { sw.Write(outputText); }
+      
+      return (outputText.ToUpper(), alphabet);
     }
 
     // decryption method
     private static string _decryptionMethod()
     {
-      var strOut = _encryptionMethod().Item1.ToLower().Split('-');
+      var stringOut = _encryptionMethod().Item1.ToLower().Split('-');
       var alphabet = _encryptionMethod().Item2;
-      var strResult = string.Empty;
+      var stringResult = string.Empty;
 
-      foreach (var VARIABLE in strOut)
+      foreach (var word in stringOut)
       {
-        Console.WriteLine(VARIABLE);
+        Console.WriteLine(word);
       }
       
       // for (var i = 0; i < strOut.Length; i++)
@@ -65,9 +59,9 @@ namespace informationSecurity
       //   }
       // }
       
-      Console.WriteLine(strResult);
+      Console.WriteLine(stringResult);
       
-      return strResult.ToLower();
+      return stringResult.ToLower();
     }
 
     // main method 

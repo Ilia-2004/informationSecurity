@@ -11,32 +11,29 @@ namespace thirdTask
     // encryption method
     private static string _encryptionMethod()
     {
-      string input;
-      using (var stream = new StreamReader($"{Path}Input.txt"))
-      {
-        input = stream.ReadToEnd();
-      }
+      string inputText;
+      using (var sr = new StreamReader($"{Path}Input.txt")) { inputText = sr.ReadToEnd(); }
       
       // reverses string
-      var reversed = input.ToCharArray();
-      Array.Reverse(reversed);
-      var reversedString = new string(reversed);
+      var reversedInputText = inputText.ToCharArray();
+      Array.Reverse(reversedInputText);
+      var reversedInputTextString = new string(reversedInputText);
       
       // on 6 blocks
-      var length = reversedString.Length;
-      var output = string.Empty;
+      var lengthReversedInputTextString = reversedInputTextString.Length;
+      var outputText = string.Empty;
       using (var sw = new StreamWriter($"{Path}Out.txt"))
       {
-        for (var i = 0; i < length; i += 6)
+        for (var i = 0; i < lengthReversedInputTextString; i += 6)
         {
-          var remaining = Math.Min(6, length - i);
-          var block = reversedString.Substring(i, remaining);
-          output += $"{block}\n";
+          var remainingLength = Math.Min(6, lengthReversedInputTextString - i);
+          var blockElementOutputText = reversedInputTextString.Substring(i, remainingLength);
+          outputText += $"{blockElementOutputText}\n";
         }
-        sw.WriteLine(output);
+        sw.WriteLine(outputText);
       }
 
-      return output;
+      return outputText;
     }
     
     // main method
