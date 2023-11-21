@@ -57,7 +57,7 @@ namespace informationSecurity
     }
 
     // main method 
-    public static void Main(string[] args)
+    public static void Main()
     {
        Console.WriteLine(string.Format($"Encryption text is: {_encryptionMethod().Item1}"));
        _decryptionMethod();
