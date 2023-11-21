@@ -37,55 +37,55 @@ namespace informationSecurity
       return (outputText.ToUpper(), alphabetKey);
     }
 
-        // decryption method
-        private static string s_decryptionMethod()
+    // decryption method
+    private static string s_decryptionMethod()
+    {
+      var stringOut = s_encryptionMethod().Item1.ToLower();
+      var alphabetKey = s_encryptionMethod().Item2;
+      var reverseAlphabetKey = new Dictionary<string, string>();
+      var stringResult = string.Empty;
+
+      foreach (var element in alphabetKey)
+        reverseAlphabetKey[element.Value] = element.Key;
+
+      foreach (var element in reverseAlphabetKey)
+        Console.WriteLine(element.Key);
+
+      Console.WriteLine(); 
+
+      for (var i = 0; i < stringOut.Length; i++)
+      {
+        Console.WriteLine(stringOut[i] + " 1");
+        const string AloneSymbols = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+        if (AloneSymbols.Contains(stringOut[i]))
         {
-            var stringOut = s_encryptionMethod().Item1.ToLower();
-            var alphabetKey = s_encryptionMethod().Item2;
-            var reverceAlphabetKey = new Dictionary<string, string>();
-            var stringResult = string.Empty;
+          Console.WriteLine(stringOut[i] + " + " + stringOut[++i]); 
+          if (stringOut[i] == 'Ð°' && stringOut[++i] == 'ï¿½') 
+          {
+            Console.WriteLine(stringOut[i] + " proshol");
+            var key = $"{stringOut[i]}{stringOut[++i]}";
+            stringResult += $"{reverseAlphabetKey[key]}";
+            i++;
+          }
+          else 
+          { 
+            Console.WriteLine(stringOut[i] + " lsjkdf");
+            stringResult += reverseAlphabetKey[Convert.ToString(stringOut[i])]; 
+          }
+        }
+        else if (stringOut[i] == '-') stringResult += " ";
+        else
+        {
+          Console.WriteLine(stringResult);
+          var key = $"{stringOut[i]}{stringOut[++i]}";
+          stringResult += $"{reverseAlphabetKey[key]}";
+          Console.WriteLine(stringResult);
 
-            foreach (var element in alphabetKey)
-                reverceAlphabetKey[element.Value] = element.Key;
-
-            foreach (var element in reverceAlphabetKey)
-                Console.WriteLine(element.Key);
-
-            Console.WriteLine(); 
-
-            for (var i = 0; i < stringOut.Length; i++)
-            {
-                Console.WriteLine(stringOut[i] + " 1");
-                string aloneSymbols = "óúüþÿôà";
-                if (aloneSymbols.Contains(stringOut[i]))
-                {
-                    Console.WriteLine(stringOut[i] + " + " + stringOut[++i]); 
-                    if (stringOut[i] == 'à' && stringOut[++i] == 'ì') 
-                    {
-                        Console.WriteLine(stringOut[i] + " proshol");
-                        string key = $"{stringOut[i]}{stringOut[++i]}";
-                        stringResult += $"{reverceAlphabetKey[key]}";
-                        i++;
-                    }
-                    else 
-                    { 
-                        Console.WriteLine(stringOut[i] + " lsjkdf");
-                        stringResult += reverceAlphabetKey[Convert.ToString(stringOut[i])]; 
-                    }
-                }
-                else if (stringOut[i] == '-') stringResult += " ";
-                else
-                {
-                    Console.WriteLine(stringResult);
-                    string key = $"{stringOut[i]}{stringOut[++i]}";
-                    stringResult += $"{reverceAlphabetKey[key]}";
-                    Console.WriteLine(stringResult);
-
-                }
-            }
+        }
+      }
 
 
-            Console.WriteLine(" ");      
+      Console.WriteLine(" ");      
       Console.WriteLine(stringResult);
       
       return stringResult.ToLower();
