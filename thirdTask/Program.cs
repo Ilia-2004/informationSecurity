@@ -9,7 +9,7 @@ namespace thirdTask
     private const string Path = @".\Contents\";
 
     // encryption method
-    private static string _encryptionMethod()
+    private static string s_encryptionMethod()
     {
       string inputText;
       using (var sr = new StreamReader($"{Path}Input.txt")) { inputText = sr.ReadToEnd(); }
@@ -37,6 +37,6 @@ namespace thirdTask
     }
     
     // main method
-    public static void Main(string[] args) => Console.WriteLine($"Encryption text is:\n{_encryptionMethod()}");
+    public static void Main() => Console.WriteLine($"Encryption text is:\n{s_encryptionMethod()}");
   }
 }

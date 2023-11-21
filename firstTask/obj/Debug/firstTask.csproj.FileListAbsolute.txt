@@ -23,3 +23,9 @@ D:\isp-42\Krasnenkov\firstTask\obj\Debug\firstTask.csproj.AssemblyReference.cach
 D:\isp-42\Krasnenkov\firstTask\obj\Debug\firstTask.csproj.CoreCompileInputs.cache
 D:\isp-42\Krasnenkov\firstTask\obj\Debug\firstTask.exe
 D:\isp-42\Krasnenkov\firstTask\obj\Debug\firstTask.pdb
+D:\ISP - 42\Krasnenkov\firstTask\obj\Debug\firstTask.csproj.AssemblyReference.cache
+D:\ISP - 42\Krasnenkov\firstTask\obj\Debug\firstTask.csproj.CoreCompileInputs.cache
+D:\ISP - 42\Krasnenkov\firstTask\obj\Debug\firstTask.exe
+D:\ISP - 42\Krasnenkov\firstTask\obj\Debug\firstTask.pdb
+D:\ISP - 42\Krasnenkov\firstTask\bin\Debug\firstTask.exe
+D:\ISP - 42\Krasnenkov\firstTask\bin\Debug\firstTask.pdb
