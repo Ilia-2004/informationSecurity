@@ -10,3 +10,10 @@ D:\isp-42\Krasnenkov\thirdTask\obj\Debug\thirdTask.csproj.AssemblyReference.cach
 D:\isp-42\Krasnenkov\thirdTask\obj\Debug\thirdTask.csproj.CoreCompileInputs.cache
 D:\isp-42\Krasnenkov\thirdTask\obj\Debug\thirdTask.exe
 D:\isp-42\Krasnenkov\thirdTask\obj\Debug\thirdTask.pdb
+F:\Ilya\Programming\informationSecurity\thirdTask\bin\Debug\thirdTask.exe
+F:\Ilya\Programming\informationSecurity\thirdTask\bin\Debug\thirdTask.pdb
+F:\Ilya\Programming\informationSecurity\thirdTask\obj\Debug\thirdTask.csproj.AssemblyReference.cache
+F:\Ilya\Programming\informationSecurity\thirdTask\obj\Debug\thirdTask.csproj.SuggestedBindingRedirects.cache
+F:\Ilya\Programming\informationSecurity\thirdTask\obj\Debug\thirdTask.csproj.CoreCompileInputs.cache
+F:\Ilya\Programming\informationSecurity\thirdTask\obj\Debug\thirdTask.exe
+F:\Ilya\Programming\informationSecurity\thirdTask\obj\Debug\thirdTask.pdb

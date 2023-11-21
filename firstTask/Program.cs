@@ -73,7 +73,7 @@ namespace informationSecurity
     // main method 
     public static void Main(string[] args)
     {
-       Console.WriteLine($"Encryption text is: {_encryptionMethod()}");
+       Console.WriteLine(string.Format($"Encryption text is: {_encryptionMethod()}"));
        _decryptionMethod();
     }
   }
