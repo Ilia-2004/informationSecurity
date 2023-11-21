@@ -41,23 +41,15 @@ namespace informationSecurity
     private static string _decryptionMethod()
     {
       var stringOut = _encryptionMethod().Item1.ToLower().Split('-');
-      var alphabet = _encryptionMethod().Item2;
       var stringResult = string.Empty;
-
-      foreach (var word in stringOut)
-      {
-        Console.WriteLine(word);
-      }
       
-      // for (var i = 0; i < strOut.Length; i++)
-      // {
-      //   foreach (var sym in alphabet)
-      //   {
-      //     if (sym.Value == Convert.ToString(strOut[i])) strResult += sym.Key;
-      //     else if (strOut.Contains(strOut[i + 1]) && sym.Value == $"{strOut[i]}{strOut[i + 1]}") strResult += sym.Key;
-      //     else strResult += " ";
-      //   }
-      // }
+      foreach (var t in stringOut)
+      {
+        for (var j = 0; j < t.Length; j++)
+        { 
+          Console.WriteLine(t[j]);
+        }
+      }
       
       Console.WriteLine(stringResult);
       
@@ -67,7 +59,7 @@ namespace informationSecurity
     // main method 
     public static void Main(string[] args)
     {
-       Console.WriteLine(string.Format($"Encryption text is: {_encryptionMethod()}"));
+       Console.WriteLine(string.Format($"Encryption text is: {_encryptionMethod().Item1}"));
        _decryptionMethod();
     }
   }
