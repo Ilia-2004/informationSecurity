@@ -36,7 +36,7 @@ namespace thirdTask
       return outputText;
     }
     
-    // main method
+    /* Main method */
     public static void Main() => Console.WriteLine($"Encryption text is:\n{s_encryptionMethod()}");
   }
 }
