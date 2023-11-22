@@ -48,54 +48,43 @@ namespace informationSecurity
       foreach (var element in alphabetKey)
         reverseAlphabetKey[element.Value] = element.Key;
 
-      foreach (var element in reverseAlphabetKey)
-        Console.WriteLine(element.Key);
-
-      Console.WriteLine(); 
-
       for (var i = 0; i < stringOut.Length; i++)
       {
-        Console.WriteLine(stringOut[i] + " 1");
-        const string AloneSymbols = "�������";
+        const string AloneSymbols = "уъьяфаю";
         if (AloneSymbols.Contains(stringOut[i]))
-        {
-          Console.WriteLine(stringOut[i] + " + " + stringOut[++i]); 
-          if (stringOut[i] == 'а' && stringOut[++i] == '�') 
+        { 
+          if (stringOut[i] == 'а')
           {
-            Console.WriteLine(stringOut[i] + " proshol");
-            var key = $"{stringOut[i]}{stringOut[++i]}";
-            stringResult += $"{reverseAlphabetKey[key]}";
-            i++;
+            if (stringOut[i + 1] == 'м') 
+            {
+              var key = $"{stringOut[i]}{stringOut[++i]}";
+              stringResult += $"{reverseAlphabetKey[key]}";
+              i += 1;
+            }
+            else 
+              stringResult += reverseAlphabetKey[Convert.ToString(stringOut[i])]; 
           }
           else 
-          { 
-            Console.WriteLine(stringOut[i] + " lsjkdf");
-            stringResult += reverseAlphabetKey[Convert.ToString(stringOut[i])]; 
-          }
+            stringResult += reverseAlphabetKey[Convert.ToString(stringOut[i])];
         }
         else if (stringOut[i] == '-') stringResult += " ";
         else
         {
-          Console.WriteLine(stringResult);
           var key = $"{stringOut[i]}{stringOut[++i]}";
           stringResult += $"{reverseAlphabetKey[key]}";
-          Console.WriteLine(stringResult);
-
         }
       }
 
+      using (var sw = new StreamWriter($"{Path}Result.txt")) { sw.Write(stringResult.ToLower()); }
 
-      Console.WriteLine(" ");      
-      Console.WriteLine(stringResult);
-      
       return stringResult.ToLower();
     }
 
-    // main method 
+    /* Main method */
     public static void Main()
     {
-      Console.WriteLine(string.Format($"Encryption text is: {s_encryptionMethod().Item1}"));
-      s_decryptionMethod();
+      Console.WriteLine($"Encryption text is:\n{s_encryptionMethod().Item1}\n");
+      Console.WriteLine($"Decryption text is:\n{s_decryptionMethod()}");
     }
   }
 }
