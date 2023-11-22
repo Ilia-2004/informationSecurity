@@ -44,14 +44,14 @@ namespace informationSecurity
       var alphabetKey = s_encryptionMethod().Item2;
       var reverseAlphabetKey = new Dictionary<string, string>();
       var stringResult = string.Empty;
+      const string aloneSymbols = "уъьяфаю";
 
       foreach (var element in alphabetKey)
         reverseAlphabetKey[element.Value] = element.Key;
 
       for (var i = 0; i < stringOut.Length; i++)
       {
-        const string AloneSymbols = "уъьяфаю";
-        if (AloneSymbols.Contains(stringOut[i]))
+        if (aloneSymbols.Contains(stringOut[i]))
         { 
           if (stringOut[i] == 'а')
           {
