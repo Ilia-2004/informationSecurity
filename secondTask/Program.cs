@@ -18,20 +18,20 @@ namespace secondTask
       var countingContentInput = new Dictionary<string, double>();
       var countingFrequencyContentInput = new Dictionary<string, double>();
 
-      foreach (var symb in contentInput) 
+      foreach (var sym in contentInput) 
       {
-        if (countingContentInput.ContainsKey(Convert.ToString(symb)))
-          countingContentInput[Convert.ToString(symb)] += 1; 
+        if (countingContentInput.ContainsKey(Convert.ToString(sym)))
+          countingContentInput[Convert.ToString(sym)] += 1; 
         else
-          countingContentInput.Add(Convert.ToString(symb), 1);
+          countingContentInput.Add(Convert.ToString(sym), 1);
       }
 
-            Console.WriteLine(lengthContentInput);
+      Console.WriteLine(lengthContentInput);
 
-      foreach (var symb in countingContentInput)
+      foreach (var sym in countingContentInput)
       {
-        var symbFrequency = symb.Value / lengthContentInput;
-        countingFrequencyContentInput.Add(symb.Key, symbFrequency);
+        var symFrequency = sym.Value / lengthContentInput;
+        countingFrequencyContentInput.Add(sym.Key, symFrequency);
       }
 
       var listFrequencyContent = countingFrequencyContentInput
@@ -53,9 +53,9 @@ namespace secondTask
        Console.WriteLine();
       foreach (var symb in resultFrequencyMethod) {
             Console.WriteLine(symb.Key + " " + symb.Value);
-            }
+      }
 
-            if (!resultFrequencyMethod.ContainsKey("а")) Console.WriteLine("Pridor");
+      if (!resultFrequencyMethod.ContainsKey("а")) Console.WriteLine("Pridor");
       return "str";
     }
 
@@ -64,8 +64,8 @@ namespace secondTask
     {
       var fileName = "input1.txt";
       Console.WriteLine("Counting letters in the first text:");
-      foreach (var symb in s_frequencyMethod(fileName))
-        Console.WriteLine(symb.Key + " " + symb.Value);
+      foreach (var sym in s_frequencyMethod(fileName))
+        Console.WriteLine(sym.Key + " " + sym.Value);
       Console.WriteLine("Method second");
       s_decoryptionMethod();
     }
