@@ -12,8 +12,8 @@ namespace thirdTask
     private static string s_encryptionMethod()
     {
       string inputText;
-      using (var sr = new StreamReader($"{Path}Input.txt")) { inputText = sr.ReadToEnd(); }
-      
+      using (var sr = new StreamReader($"{Path}Input.txt")) { inputText = sr.ReadToEnd(); } // исправить как var contentInput = File.ReadAllText($"{Path}input1.txt");
+
       // reverses string
       var reversedInputText = inputText.ToCharArray();
       Array.Reverse(reversedInputText);

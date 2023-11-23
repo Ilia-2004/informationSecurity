@@ -4,3 +4,9 @@ D:\IS Krass\secondTask\obj\Debug\secondTask.csproj.AssemblyReference.cache
 D:\IS Krass\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
 D:\IS Krass\secondTask\obj\Debug\secondTask.exe
 D:\IS Krass\secondTask\obj\Debug\secondTask.pdb
+D:\isp-42\Krasnenkov\Infomation Security\secondTask\bin\Debug\secondTask.exe
+D:\isp-42\Krasnenkov\Infomation Security\secondTask\bin\Debug\secondTask.pdb
+D:\isp-42\Krasnenkov\Infomation Security\secondTask\obj\Debug\secondTask.csproj.AssemblyReference.cache
+D:\isp-42\Krasnenkov\Infomation Security\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
+D:\isp-42\Krasnenkov\Infomation Security\secondTask\obj\Debug\secondTask.exe
+D:\isp-42\Krasnenkov\Infomation Security\secondTask\obj\Debug\secondTask.pdb

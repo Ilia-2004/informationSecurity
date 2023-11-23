@@ -16,7 +16,7 @@ namespace informationSecurity
       string[] arrayKey;
       string inputText;
       var outputText = string.Empty; 
-      using (var sr = new StreamReader($"{Path}Key.txt"))
+      using (var sr = new StreamReader($"{Path}Key.txt")) // исправить как var contentInput = File.ReadAllText($"{Path}input1.txt");
       {
         var stringKey = sr.ReadToEnd();
         arrayKey = stringKey.Split(',');
