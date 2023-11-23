@@ -11,7 +11,7 @@ namespace secondTask
     private const string Path = @".\Contents\";
 
     // the method of calculating the frequency of letters in the text
-    private static string s_frequencyMethod(string fileName) 
+    private static IEnumerable<KeyValuePair<string, double>> s_frequencyMethod(string fileName) 
     {
       var contentInput = File.ReadAllText($"{Path}{fileName}");
       var lengthContentInput = contentInput.Length;
@@ -27,34 +27,34 @@ namespace secondTask
       }
 
       foreach (var symb in countingContentInput)
-        Console.WriteLine(symb.Key + " " + symb.Value);
-
-      Console.WriteLine();
-      Console.WriteLine(lengthContentInput);
-
-      foreach (var symb in countingContentInput)
       {
         var symbFrequency = symb.Value / lengthContentInput;
         countingFrequencyContentInput.Add(symb.Key, symbFrequency);
       }
 
-      foreach(var symb in countingFrequencyContentInput)
-      {
-         Console.WriteLine(symb.Key + " " + symb.Value);
-      }
+      var sortingCountingFrequencyContentInput = countingFrequencyContentInput
+                                                  .OrderBy(e => e.Value).Reverse();
 
+      return sortingCountingFrequencyContentInput;
+    }
 
+    // decryption method
+    private static string s_decoryptionMethod()
+    {
+      var resutlFrequencyMethod = s_frequencyMethod("input2.txt");
+      
 
       return "str";
     }
-
-
 
     /* Main method */
     public static void Main(string[] args)
     {
       var fileName = "input1.txt";
-      s_frequencyMethod(fileName);    
+      Console.WriteLine("Counting letters in the first text:");
+      foreach (var symb in s_frequencyMethod(fileName))
+        Console.WriteLine(symb.Key + " " + symb.Value);
+      s_decoryptionMethod();
     }
   }
 }
