@@ -43,19 +43,25 @@ namespace secondTask
     }
 
     // decryption method
-    private static string s_decoryptionMethod()
+    private static string s_decryptionMethod()
     {
       var resultFrequencyMethod = s_frequencyMethod("input2.txt");
-      var listLetters = new List<char>() {'о', 'а', 'е', 'н', 'и', 'л', 'т', 'с', 'к', 'р', 'в', 'м', 'д', 
-                                          'у', 'п', 'ь', 'ы', 'з', 'я', 'г', 'ч', 'б', 'й', 'ш', 'ж', 
-                                          'х', 'ю', 'ц', 'щ', 'э', 'ф', 'ъ'};
-      
-       Console.WriteLine();
-      foreach (var symb in resultFrequencyMethod) {
-            Console.WriteLine(symb.Key + " " + symb.Value);
-      }
+      var listLetter = File.ReadAllText($"{Path}Alphabet.txt");
+      var listLetterFrequencies = File.ReadAllText($"{Path}AlphabetFrequencies.txt").ToList(); 
+      var deletedSymbols = (from sym in resultFrequencyMethod 
+        where !listLetter.Contains(sym.Key) select sym.Key).ToList();
 
-      if (!resultFrequencyMethod.ContainsKey("а")) Console.WriteLine("Pridor");
+      foreach (var sym in deletedSymbols)
+        resultFrequencyMethod.Remove(sym);
+      
+      foreach (var sym in resultFrequencyMethod)
+        Console.WriteLine(sym.Key + " " + sym.Value);
+
+      foreach (var sym in listLetterFrequencies)
+      {
+        Console.Write(sym);
+      }
+      
       return "str";
     }
 
@@ -64,10 +70,10 @@ namespace secondTask
     {
       var fileName = "input1.txt";
       Console.WriteLine("Counting letters in the first text:");
-      foreach (var sym in s_frequencyMethod(fileName))
-        Console.WriteLine(sym.Key + " " + sym.Value);
+        //foreach (var sym in s_frequencyMethod(fileName))
+        //Console.WriteLine(sym.Key + " " + sym.Value);
       Console.WriteLine("Method second");
-      s_decoryptionMethod();
+      s_decryptionMethod();
     }
   }
 }

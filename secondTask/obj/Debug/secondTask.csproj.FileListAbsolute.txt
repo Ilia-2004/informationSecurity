@@ -22,3 +22,10 @@ D:\ISP - 42\Krasnenkov\secondTask\obj\Debug\secondTask.csproj.AssemblyReference.
 D:\ISP - 42\Krasnenkov\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
 D:\ISP - 42\Krasnenkov\secondTask\obj\Debug\secondTask.exe
 D:\ISP - 42\Krasnenkov\secondTask\obj\Debug\secondTask.pdb
+F:\Ilya\Programming\informationSecurity\secondTask\bin\Debug\secondTask.exe
+F:\Ilya\Programming\informationSecurity\secondTask\bin\Debug\secondTask.pdb
+F:\Ilya\Programming\informationSecurity\secondTask\obj\Debug\secondTask.csproj.AssemblyReference.cache
+F:\Ilya\Programming\informationSecurity\secondTask\obj\Debug\secondTask.csproj.SuggestedBindingRedirects.cache
+F:\Ilya\Programming\informationSecurity\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
+F:\Ilya\Programming\informationSecurity\secondTask\obj\Debug\secondTask.exe
+F:\Ilya\Programming\informationSecurity\secondTask\obj\Debug\secondTask.pdb
