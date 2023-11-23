@@ -11,7 +11,7 @@ namespace secondTask
     private const string Path = @".\Contents\";
 
     // the method of calculating the frequency of letters in the text
-    private static IEnumerable<KeyValuePair<string, double>> s_frequencyMethod(string fileName) 
+    private static Dictionary<string, double> s_frequencyMethod(string fileName) 
     {
       var contentInput = File.ReadAllText($"{Path}{fileName}");
       var lengthContentInput = contentInput.Length;
@@ -26,14 +26,18 @@ namespace secondTask
           countingContentInput.Add(Convert.ToString(symb), 1);
       }
 
+            Console.WriteLine(lengthContentInput);
+
       foreach (var symb in countingContentInput)
       {
         var symbFrequency = symb.Value / lengthContentInput;
         countingFrequencyContentInput.Add(symb.Key, symbFrequency);
       }
 
-      var sortingCountingFrequencyContentInput = countingFrequencyContentInput
+      var listFrequencyContent = countingFrequencyContentInput
                                                   .OrderBy(e => e.Value).Reverse();
+      var sortingCountingFrequencyContentInput = listFrequencyContent
+                                                    .ToDictionary(x => x.Key, x => x.Value);
 
       return sortingCountingFrequencyContentInput;
     }
@@ -41,9 +45,17 @@ namespace secondTask
     // decryption method
     private static string s_decoryptionMethod()
     {
-      var resutlFrequencyMethod = s_frequencyMethod("input2.txt");
+      var resultFrequencyMethod = s_frequencyMethod("input2.txt");
+      var listLetters = new List<char>() {'о', 'а', 'е', 'н', 'и', 'л', 'т', 'с', 'к', 'р', 'в', 'м', 'д', 
+                                          'у', 'п', 'ь', 'ы', 'з', 'я', 'г', 'ч', 'б', 'й', 'ш', 'ж', 
+                                          'х', 'ю', 'ц', 'щ', 'э', 'ф', 'ъ'};
       
+       Console.WriteLine();
+      foreach (var symb in resultFrequencyMethod) {
+            Console.WriteLine(symb.Key + " " + symb.Value);
+            }
 
+            if (!resultFrequencyMethod.ContainsKey("а")) Console.WriteLine("Pridor");
       return "str";
     }
 
@@ -54,6 +66,7 @@ namespace secondTask
       Console.WriteLine("Counting letters in the first text:");
       foreach (var symb in s_frequencyMethod(fileName))
         Console.WriteLine(symb.Key + " " + symb.Value);
+      Console.WriteLine("Method second");
       s_decoryptionMethod();
     }
   }

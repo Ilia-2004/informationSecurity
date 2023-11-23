@@ -16,3 +16,9 @@ D:\isp-42\Krasnenkov\secondTask\obj\Debug\secondTask.csproj.AssemblyReference.ca
 D:\isp-42\Krasnenkov\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
 D:\isp-42\Krasnenkov\secondTask\obj\Debug\secondTask.exe
 D:\isp-42\Krasnenkov\secondTask\obj\Debug\secondTask.pdb
+D:\ISP - 42\Krasnenkov\secondTask\bin\Debug\secondTask.exe
+D:\ISP - 42\Krasnenkov\secondTask\bin\Debug\secondTask.pdb
+D:\ISP - 42\Krasnenkov\secondTask\obj\Debug\secondTask.csproj.AssemblyReference.cache
+D:\ISP - 42\Krasnenkov\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
+D:\ISP - 42\Krasnenkov\secondTask\obj\Debug\secondTask.exe
+D:\ISP - 42\Krasnenkov\secondTask\obj\Debug\secondTask.pdb
