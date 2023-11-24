@@ -20,17 +20,18 @@ namespace secondTask
 
       foreach (var sym in contentInput) 
       {
-        if (countingContentInput.ContainsKey(Convert.ToString(sym)))
-          countingContentInput[Convert.ToString(sym)] += 1; 
+        if (sym == ' ') continue;
+        if (countingContentInput.ContainsKey(Convert.ToString(sym).ToUpper()))
+          countingContentInput[Convert.ToString(sym).ToUpper()] += 1; 
         else
-          countingContentInput.Add(Convert.ToString(sym), 1);
+          countingContentInput.Add(Convert.ToString(sym).ToUpper(), 1);
       }
 
       Console.WriteLine(lengthContentInput);
 
       foreach (var sym in countingContentInput)
       {
-        var symFrequency = sym.Value / lengthContentInput;
+        var symFrequency = Math.Round(sym.Value / lengthContentInput, 7);
         countingFrequencyContentInput.Add(sym.Key, symFrequency);
       }
 
@@ -45,11 +46,16 @@ namespace secondTask
     // decryption method
     private static string s_decryptionMethod()
     {
+      var inputText = File.ReadAllText($"{Path}input2.txt");
       var resultFrequencyMethod = s_frequencyMethod("input2.txt");
       var listLetter = File.ReadAllText($"{Path}Alphabet.txt");
       var listLetterFrequencies = File.ReadAllText($"{Path}AlphabetFrequencies.txt").ToList(); 
-      var deletedSymbols = (from sym in resultFrequencyMethod 
-        where !listLetter.Contains(sym.Key) select sym.Key).ToList();
+      var deletedSymbols = new List<string>();
+      var requenceiesLettersToInput = new Dictionary<string, string>();
+
+      foreach (var sym in resultFrequencyMethod)
+        if (!listLetter.Contains(sym.Key) || sym.Key == " ") 
+           deletedSymbols.Add(sym.Key);
 
       foreach (var sym in deletedSymbols)
         resultFrequencyMethod.Remove(sym);
@@ -58,10 +64,14 @@ namespace secondTask
         Console.WriteLine(sym.Key + " " + sym.Value);
 
       foreach (var sym in listLetterFrequencies)
-      {
-        Console.Write(sym);
-      }
+        Console.WriteLine(sym);
       
+      //foreach (var sym in resultFrequencyMethod)
+      //{
+      //  foreach (var symbol in listLetterFrequencies)
+      //    requenceiesLettersToInput.Add(sym.Key, Convert.ToString(symbol));
+      //}
+
       return "str";
     }
 

@@ -29,3 +29,9 @@ F:\Ilya\Programming\informationSecurity\secondTask\obj\Debug\secondTask.csproj.S
 F:\Ilya\Programming\informationSecurity\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
 F:\Ilya\Programming\informationSecurity\secondTask\obj\Debug\secondTask.exe
 F:\Ilya\Programming\informationSecurity\secondTask\obj\Debug\secondTask.pdb
+D:\isp-42\Krasnenkov\informationSecurity\secondTask\bin\Debug\secondTask.exe
+D:\isp-42\Krasnenkov\informationSecurity\secondTask\bin\Debug\secondTask.pdb
+D:\isp-42\Krasnenkov\informationSecurity\secondTask\obj\Debug\secondTask.csproj.AssemblyReference.cache
+D:\isp-42\Krasnenkov\informationSecurity\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
+D:\isp-42\Krasnenkov\informationSecurity\secondTask\obj\Debug\secondTask.exe
+D:\isp-42\Krasnenkov\informationSecurity\secondTask\obj\Debug\secondTask.pdb
