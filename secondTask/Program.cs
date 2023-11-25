@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -53,6 +54,7 @@ namespace secondTask
       var listLetterFrequencies = File.ReadAllText($"{Path}AlphabetFrequencies.txt").ToList(); 
       var deletedSymbols = new List<string>();
       var requenceiesLettersToInput = new Dictionary<string, string>();
+      var resultDecryptionInputText = string.Empty;
 
       foreach (var sym in resultFrequencyMethod)
         if (!listLetter.Contains(sym.Key) || sym.Key == "") 
@@ -62,16 +64,29 @@ namespace secondTask
         resultFrequencyMethod.Remove(sym);
       
       foreach (var sym in resultFrequencyMethod)
-        Console.WriteLine(sym.Key + " " + sym.Value);
-
-      foreach (var sym in listLetterFrequencies)
-        Console.WriteLine(sym);
-      
-      foreach (var sym in resultFrequencyMethod)
       {
         foreach (var symbol in listLetterFrequencies)
-          requenceiesLettersToInput.Add(sym.Key, Convert.ToString(symbol));
+        {
+          if (!requenceiesLettersToInput.ContainsKey(sym.Key) && 
+            !requenceiesLettersToInput.ContainsValue(Convert.ToString(symbol)))
+          {
+             requenceiesLettersToInput.Add(sym.Key, Convert.ToString(symbol));
+             continue;
+          }
+        }
       }
+
+      foreach (var sym in inputText)
+      {
+                if (requenceiesLettersToInput.ContainsKey(Convert.ToString(sym).ToUpper()))
+                {
+                    resultDecryptionInputText += requenceiesLettersToInput[Convert.ToString(sym).ToUpper()];
+                }
+                else resultDecryptionInputText += sym;  
+                Console.WriteLine(resultDecryptionInputText);
+      }
+        
+      Console.WriteLine(resultDecryptionInputText);
 
       return "str";
     }
