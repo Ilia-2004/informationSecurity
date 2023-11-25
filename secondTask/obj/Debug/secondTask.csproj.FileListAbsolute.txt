@@ -35,3 +35,9 @@ D:\isp-42\Krasnenkov\informationSecurity\secondTask\obj\Debug\secondTask.csproj.
 D:\isp-42\Krasnenkov\informationSecurity\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
 D:\isp-42\Krasnenkov\informationSecurity\secondTask\obj\Debug\secondTask.exe
 D:\isp-42\Krasnenkov\informationSecurity\secondTask\obj\Debug\secondTask.pdb
+D:\Users\ST306-05\Source\Repos\informationSecurity\secondTask\bin\Debug\secondTask.exe
+D:\Users\ST306-05\Source\Repos\informationSecurity\secondTask\bin\Debug\secondTask.pdb
+D:\Users\ST306-05\Source\Repos\informationSecurity\secondTask\obj\Debug\secondTask.csproj.AssemblyReference.cache
+D:\Users\ST306-05\Source\Repos\informationSecurity\secondTask\obj\Debug\secondTask.csproj.CoreCompileInputs.cache
+D:\Users\ST306-05\Source\Repos\informationSecurity\secondTask\obj\Debug\secondTask.exe
+D:\Users\ST306-05\Source\Repos\informationSecurity\secondTask\obj\Debug\secondTask.pdb

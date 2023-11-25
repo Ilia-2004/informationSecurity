@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace secondTask
 {
@@ -20,7 +21,7 @@ namespace secondTask
 
       foreach (var sym in contentInput) 
       {
-        if (sym == ' ') continue;
+        if ((int)sym <= 32) continue;
         if (countingContentInput.ContainsKey(Convert.ToString(sym).ToUpper()))
           countingContentInput[Convert.ToString(sym).ToUpper()] += 1; 
         else
@@ -54,7 +55,7 @@ namespace secondTask
       var requenceiesLettersToInput = new Dictionary<string, string>();
 
       foreach (var sym in resultFrequencyMethod)
-        if (!listLetter.Contains(sym.Key) || sym.Key == " ") 
+        if (!listLetter.Contains(sym.Key) || sym.Key == "") 
            deletedSymbols.Add(sym.Key);
 
       foreach (var sym in deletedSymbols)
@@ -66,11 +67,11 @@ namespace secondTask
       foreach (var sym in listLetterFrequencies)
         Console.WriteLine(sym);
       
-      //foreach (var sym in resultFrequencyMethod)
-      //{
-      //  foreach (var symbol in listLetterFrequencies)
-      //    requenceiesLettersToInput.Add(sym.Key, Convert.ToString(symbol));
-      //}
+      foreach (var sym in resultFrequencyMethod)
+      {
+        foreach (var symbol in listLetterFrequencies)
+          requenceiesLettersToInput.Add(sym.Key, Convert.ToString(symbol));
+      }
 
       return "str";
     }
