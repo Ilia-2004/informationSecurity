@@ -15,11 +15,13 @@ namespace secondTask
     // the method of calculating the frequency of letters in the text
     private static Dictionary<string, double> s_frequencyMethod(string fileName) 
     {
-      var contentInput = File.ReadAllText($"{Path}{fileName}");
-      var lengthContentInput = contentInput.Length;
-      var countingContentInput = new Dictionary<string, double>();
-      var countingFrequencyContentInput = new Dictionary<string, double>();
+      // переменные
+      var contentInput = File.ReadAllText($"{Path}{fileName}");     // чтение исходного файла
+      var lengthContentInput = contentInput.Length;                       // длина исходного файла
+      var countingContentInput = new Dictionary<string, double>();           // список букв и их количество
+      var countingFrequencyContentInput = new Dictionary<string, double>();  // список букв и их частотность
 
+      // посчёт символов
       foreach (var sym in contentInput) 
       {
         if ((int)sym <= 32) continue;
@@ -28,20 +30,40 @@ namespace secondTask
         else
           countingContentInput.Add(Convert.ToString(sym).ToUpper(), 1);
       }
-
-      Console.WriteLine(lengthContentInput);
-
+      
+      // вывод количества символов
+      Console.WriteLine(lengthContentInput + " колличество символов");
+      Console.WriteLine();
+      
+      // вывод символов и их количества в тексте
+      foreach (var sym in countingContentInput)
+        Console.WriteLine(sym.Key + " " + sym.Value);
+      
+      // подсчёт частотности
       foreach (var sym in countingContentInput)
       {
         var symFrequency = Math.Round(sym.Value / lengthContentInput, 7);
         countingFrequencyContentInput.Add(sym.Key, symFrequency);
       }
 
+      // вывод частотности символов
+      Console.WriteLine();
+      foreach (var sym in countingFrequencyContentInput)
+        Console.WriteLine(sym.Key + " " + sym.Value);
+
+      // сортировка символов
       var listFrequencyContent = countingFrequencyContentInput
                                                   .OrderBy(e => e.Value).Reverse();
+      
+      // добавление в словарь
       var sortingCountingFrequencyContentInput = listFrequencyContent
                                                     .ToDictionary(x => x.Key, x => x.Value);
 
+      // вывод отсортированного списка частотности
+      Console.WriteLine();
+      foreach (var sym in sortingCountingFrequencyContentInput)
+        Console.WriteLine(sym.Key + " " + sym.Value);
+      
       return sortingCountingFrequencyContentInput;
     }
 
@@ -76,14 +98,20 @@ namespace secondTask
         }
       }
 
+      foreach (var sym in requenceiesLettersToInput)
+        Console.WriteLine(sym.Key + " " + sym.Value);
+      
       foreach (var sym in inputText)
       {
-                if (requenceiesLettersToInput.ContainsKey(Convert.ToString(sym).ToUpper()))
-                {
-                    resultDecryptionInputText += requenceiesLettersToInput[Convert.ToString(sym).ToUpper()];
-                }
-                else resultDecryptionInputText += sym;  
-                Console.WriteLine(resultDecryptionInputText);
+        //Console.WriteLine(sym);
+        if (requenceiesLettersToInput.ContainsKey(Convert.ToString(sym).ToUpper()))
+        {
+          resultDecryptionInputText += requenceiesLettersToInput[Convert.ToString(sym).ToUpper()];
+          //Console.WriteLine(resultDecryptionInputText + " second");
+        }
+        else if (Convert.ToString(sym).ToUpper() == "Ё")
+          resultDecryptionInputText += "Ё";
+        else resultDecryptionInputText += sym; 
       }
         
       Console.WriteLine(resultDecryptionInputText);
