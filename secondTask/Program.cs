@@ -10,92 +10,63 @@ internal abstract class Program
   private const string Path = @".\Contents\";
 
   // the method of calculating the frequency of letters in the text
-  private static Dictionary<string, double> s_frequencyMethod(string fileName) 
+  private static Dictionary<char, double> s_frequencyMethod(string fileName) 
   {
     /* переменные */ 
-    // чтение исходного файла
-    var contentInput = File.ReadAllText($"{Path}{fileName}");
-    // длина исходного файла
-    var lengthContentInput = contentInput.Length;
-    // список букв и их количество
-    var countingContentInput = new Dictionary<string, double>();
-    // список букв и их частотность
-    var countingFrequencyContentInput = new Dictionary<string, double>();
     // присваивание русского алфавита
-    var listLetter = File.ReadAllText($"{Path}Alphabet.txt");
-    // список удаляемых символов
-    var deletedSymbols = new List<string>();                               
+    var alphabet = File.ReadAllText($"{Path}Alphabet.txt");                              
+    // чтение исходного файла
+    var contentInputText = File.ReadAllText($"{Path}{fileName}").ToUpper();
+    // общее колличество букв
+    var numberLetters = 0;
+    // список букв и их количество
+    var countLetters = new Dictionary<char, int>();
+    // список букв и их частотность
+    var frequencyLetters = new Dictionary<char, double>();
+    // список отсортерованных букв по их частотности 
+    var sortedFrequencyLettersDictionary = new Dictionary<char, double>();
 
-    // посчёт символов
-    foreach (var sym in contentInput) 
+    // подсчёт букв в тексте
+    foreach (var sym in contentInputText)
     {
-      if ((int)sym <= 32) continue;
-      if (countingContentInput.ContainsKey(Convert.ToString(sym).ToUpper()))
-        countingContentInput[Convert.ToString(sym).ToUpper()] += 1; 
-      else
-        countingContentInput.Add(Convert.ToString(sym).ToUpper(), 1);
+      var letter = sym;
+      if ((int)letter < 32) continue;
+      if (alphabet.Contains(letter))
+      {
+        if (countLetters.ContainsKey(letter))
+          countLetters[letter]++;
+        else 
+          countLetters.Add(letter, 1);
+      }
     }
-      
-    // вывод количества символов
-    Console.WriteLine(lengthContentInput + " колличество символов");
+
+    // вывод списка букв
+    Console.WriteLine("Вывод списка букв:"); 
+    foreach (var letter in countLetters)
+      Console.WriteLine(letter.Key + " " + letter.Value);
+
+    // вывод количества букв
+    numberLetters = countLetters.Sum(x => x.Value);
+    Console.WriteLine("Колличество букв");
+    Console.WriteLine(numberLetters);
     Console.WriteLine();
-      
-    // вывод символов и их количества в тексте
-    Console.WriteLine("Вывод символов и их количества в тексте: ");
-    foreach (var sym in countingContentInput)
-      Console.WriteLine(sym.Key + " " + sym.Value);
-    Console.WriteLine();
-      
+
     // подсчёт частотности
-    foreach (var sym in countingContentInput)
-    {
-      var symFrequency = Math.Round(sym.Value / lengthContentInput, 7);
-      countingFrequencyContentInput.Add(sym.Key, symFrequency);
-    }
+    foreach (var letter in countLetters)
+      frequencyLetters[letter.Key] = Math.Round((letter.Value / (double)numberLetters) * 100, 2);
 
-    // вывод частотности символов
-    Console.WriteLine("Вывод частотности символов: ");
-    foreach (var sym in countingFrequencyContentInput)
-      Console.WriteLine(sym.Key + " " + sym.Value);
-    Console.WriteLine();
+    // сортировка словаря
+    var sortedFrequencyLetters = frequencyLetters.OrderByDescending(x => x.Value);
+    sortedFrequencyLettersDictionary = sortedFrequencyLetters.ToDictionary(x => x.Key, x => x.Value);
 
-    // сортировка символов
-    var listFrequencyContent = countingFrequencyContentInput
-      .OrderBy(e => e.Value).Reverse();
-    // добавление в словарь
-    var sortingCountingFrequencyContentInput = listFrequencyContent
-      .ToDictionary(x => x.Key, x => x.Value);
+    // вывод отсортированного словаря
+    Console.WriteLine("Вывод отсортерованного списка:");
+    foreach (var item in sortedFrequencyLettersDictionary)
+      Console.WriteLine($"{item.Key}: {item.Value}%");
 
-    // вывод отсортированного списка частотности
-    Console.WriteLine("Вывод отсортированного списка частотности: ");
-    foreach (var sym in sortingCountingFrequencyContentInput)
-      Console.WriteLine(sym.Key + " " + sym.Value);
-      
-      
-    // добавление удаляемых символов в список
-    foreach (var sym in sortingCountingFrequencyContentInput)
-      if (!listLetter.Contains(sym.Key) || sym.Key == "") 
-        deletedSymbols.Add(sym.Key);
-      
-    // вывод удаляемых символов
-    Console.WriteLine("Вывод удаляемых символов: ");
-    foreach (var sym in deletedSymbols)
-      Console.WriteLine(sym);
-    Console.WriteLine();
-            
-    // удаление символов, не являющимися буквами
-    foreach (var sym in deletedSymbols)
-      sortingCountingFrequencyContentInput.Remove(sym);
-            
-    // вывод частотности символов после удаления символов
-    Console.WriteLine("Вывод частотности символов после удаления символов: ");
-    foreach (var sym in sortingCountingFrequencyContentInput)
-      Console.WriteLine(sym.Key + " " + sym.Value);
-    Console.WriteLine();
-      
     Console.WriteLine("---------------");
-      
-    return sortingCountingFrequencyContentInput;
+
+    return sortedFrequencyLettersDictionary;
   }
 
   // decryption method
@@ -109,7 +80,7 @@ internal abstract class Program
     // присваивания алфавита по частотности
     var listLetterFrequencies = File.ReadAllText($"{Path}AlphabetFrequencies.txt").ToList();
     // список сапоставления символов
-    var requenceiesLettersToInput = new Dictionary<string, string>();
+    var requenceiesLettersToInput = new Dictionary<char, char>();
     // строка результата
     var resultDecryptionInputText = string.Empty;
       
@@ -119,9 +90,9 @@ internal abstract class Program
       foreach (var symbol in listLetterFrequencies)
       {
         if (!requenceiesLettersToInput.ContainsKey(sym.Key) && 
-            !requenceiesLettersToInput.ContainsValue(Convert.ToString(symbol)))
+            !requenceiesLettersToInput.ContainsValue(symbol))
         {
-          requenceiesLettersToInput.Add(sym.Key, Convert.ToString(symbol));
+          requenceiesLettersToInput.Add(sym.Key, symbol);
           continue;
         }
       }
@@ -134,21 +105,21 @@ internal abstract class Program
     Console.WriteLine();
       
     // добавление в строку результата
-    foreach (var sym in inputText)
-    {
-      //Console.WriteLine(sym);
-      if (requenceiesLettersToInput.ContainsKey(Convert.ToString(sym).ToUpper()))
-      {
-        resultDecryptionInputText += requenceiesLettersToInput[Convert.ToString(sym).ToUpper()];
-        //Console.WriteLine(resultDecryptionInputText + " second");
-      }
-      else if (Convert.ToString(sym).ToUpper() == "Ё")
-        resultDecryptionInputText += "Ё";
-      else resultDecryptionInputText += sym; 
-    }
+    //foreach (var sym in inputText)
+    //{
+    //  //Console.WriteLine(sym);
+    //  if (requenceiesLettersToInput.ContainsKey(sym))
+    //  {
+    //    resultDecryptionInputText += requenceiesLettersToInput[sym];
+    //    //Console.WriteLine(resultDecryptionInputText + " second");
+    //  }
+    //  else if (Convert.ToString(sym).ToUpper() == "Ё")
+    //    resultDecryptionInputText += "Ё";
+    //  else resultDecryptionInputText += sym; 
+    //}
         
     // вывод результата
-    Console.WriteLine(resultDecryptionInputText);
+    //Console.WriteLine(resultDecryptionInputText);
 
     return resultDecryptionInputText;
   }
@@ -158,9 +129,9 @@ internal abstract class Program
   {
     var fileName = "input1.txt";
     Console.WriteLine("Counting letters in the first text:");
-    //foreach (var sym in s_frequencyMethod(fileName))
-      //Console.WriteLine(sym.Key + " " + sym.Value);
-    Console.WriteLine("Method second");
-    s_decryptionMethod();
+    foreach (var sym in s_frequencyMethod(fileName))
+      Console.WriteLine(sym.Key + " " + sym.Value);
+    //Console.WriteLine("Method second");
+    //s_decryptionMethod();
   }
 }
