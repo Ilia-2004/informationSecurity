@@ -1,23 +1,21 @@
 ﻿using System; 
 
-namespace fourTask
+namespace fourTask;
+internal abstract class Program
 {
-  internal abstract class Program
+  // files path
+  private const string Path = @".\Contents\";
+
+  /* Methods */
+  private static string s_encryptionMethod(string pathFile)
   {
-    // files path
-    private const string Path = @".\Contents\";
 
-    /* Methods */
-    private static string s_encryptionMethod(string pathFile)
-    {
+    return "str";
+  }
 
-      return "str";
-    }
-
-    /* Main method */
-    public static void Main()
-    {
-      Console.WriteLine("Hello");
-    }
+  /* Main method */
+  public static void Main()
+  {
+    Console.WriteLine("Hello");
   }
 }
