@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace secondTask;
 internal abstract class Program
@@ -41,143 +42,145 @@ internal abstract class Program
       }
     }
 
-    // вывод списка букв
-    Console.WriteLine("Вывод списка букв: ");
-    foreach (var sym in countLetters)
-      Console.WriteLine(sym.Key + " " + sym.Value);
-
     // подсчёт частотности
+    numberLetters = countLetters.Sum(x => x.Value);
     foreach (var letter in countLetters)
-      frequencyLetters[letter.Key] = Math.Round((letter.Value / (double)numberLetters) * 100, 2);
-
-    // вывод списка букв
-    Console.WriteLine("Вывод списка частоты букв: ");
-    foreach (var sym in frequencyLetters)
-      Console.WriteLine(sym.Key + " " + sym.Value);
+      frequencyLetters[letter.Key] = Math.Round((letter.Value / (double)numberLetters) * 100, 2); ;
 
     // сортировка словаря
     var sortedFrequencyLetters = frequencyLetters.OrderByDescending(x => x.Value);
     sortedFrequencyLettersDictionary = sortedFrequencyLetters.ToDictionary(x => x.Key, x => x.Value);
 
-    // вывод списка букв
-    Console.WriteLine("Вывод отсортированного списка частоты букв: ");
-    foreach (var sym in sortedFrequencyLettersDictionary)
-      Console.WriteLine(sym.Key + " " + sym.Value);
-
-    Console.WriteLine("---------------------");
-
     return sortedFrequencyLettersDictionary;
   }
 
   // decryption method
-  private static (string, string) s_decryptionMethod(string file, string file1)
+  private static string s_decryptionMethod(string file, string file1)
   {
-        var FileContent = file.ToUpper();
-        var K = new Dictionary<char, char>
-            {
+        //var FileContent = File.ReadAllText($"{Path}{file}").ToUpper();
+        //var K = new Dictionary<char, char>
+        //    {
 
-                { 'В', ' ' },
-                { 'Л', 'о' },
-                { 'Ц', 'н' },
-                { 'Ф', 'а' },
-                { 'А', 'и' },
-                { 'С', 'т' },
-                { 'И', 'д' },
-                { 'Ш', 'у' },
-                { 'Ы', 'к' },
-                { 'У', 'в' },
-                { 'Щ', 'г' },
-                { 'Е', 'э' },
-                { 'Г', 'у' },
-                { 'Э', 'ж' },
-                { 'Ъ', 'ы' },
-                { 'Ж', 'р' },
-                { 'Ч', 'з' },
-                { 'О', 'с' },
-                { 'Я', 'п' },
-                { 'Б', 'х' },
-                { 'Д', 'й' },
-                { 'Ь', 'л' },
-                { 'З', 'м' },
-                { 'Ю', 'ь' },
-                { 'Н', 'б' },
-                { ' ', 'ю' },
-                { 'К', 'я' },
-                { 'Т', 'ш' },
-                { 'Х', 'щ' },
-                { 'П', 'ч' },
-                { 'Й', 'ц' }
+        //        { 'В', ' ' },
+        //        { 'Л', 'о' },
+        //        { 'Ц', 'н' },
+        //        { 'Ф', 'а' },
+        //        { 'А', 'и' },
+        //        { 'С', 'т' },
+        //        { 'И', 'д' },
+        //        { 'Ш', 'у' },
+        //        { 'Ы', 'к' },
+        //        { 'У', 'в' },
+        //        { 'Щ', 'г' },
+        //        { 'Е', 'э' },
+        //        { 'Г', 'у' },
+        //        { 'Э', 'ж' },
+        //        { 'Ъ', 'ы' },
+        //        { 'Ж', 'р' },
+        //        { 'Ч', 'з' },
+        //        { 'О', 'с' },
+        //        { 'Я', 'п' },
+        //        { 'Б', 'х' },
+        //        { 'Д', 'й' },
+        //        { 'Ь', 'л' },
+        //        { 'З', 'м' },
+        //        { 'Ю', 'ь' },
+        //        { 'Н', 'б' },
+        //        { ' ', 'ю' },
+        //        { 'К', 'я' },
+        //        { 'Т', 'ш' },
+        //        { 'Х', 'щ' },
+        //        { 'П', 'ч' },
+        //        { 'Й', 'ц' }
 
-            };
-        StringBuilder decryptedText = new StringBuilder();
-        foreach (var c in FileContent)
+        //    };
+        //StringBuilder decryptedText = new StringBuilder();
+        //foreach (var c in FileContent)
+        //{
+        //    if (K.ContainsKey(c))
+        //    {
+        //        decryptedText.Append(K[c]);
+        //    }
+        //    else
+        //    {
+        //        decryptedText.Append(c);
+        //    }
+        //}
+
+
+        var FileContent1 = File.ReadAllText($"{Path}{file1}").ToUpper();
+        //var K1 = new Dictionary<char, char>
+        //    {
+        //        {'Э', 'о'},
+        //        {'Ж', 'а'},
+        //        {'Ш', 'е'},
+        //        {'А', 'н'},
+        //        {'К', 'и'},
+        //        {'Е', 'л'},
+        //        {'И', 'т'},
+        //        {'Й', 'с'},
+        //        {'Г', 'к'},
+        //        {'Ъ', 'р'},
+        //        {'В', 'в'},
+        //        {'Д', 'м'},
+        //        {'Ь', 'д'}, 
+        //        {'Л', 'у'},
+        //        {'Я', 'п'},
+        //        {'П', 'ь'},
+        //        {'Ч', 'ы'},
+        //        {'У', 'з'},
+        //        {'Ф', 'я'},
+        //        {'Ц', 'г'},
+        //        {'Щ', 'ч'},
+        //        {'Б', 'б'},
+        //        {'Ы', 'й'},
+        //        {'Ю', 'ш'},
+        //        {'Н', 'ж'},
+        //        {'М', 'х'},
+        //        {'Х', 'ю'},
+        //        {'С', 'ц'},
+        //        {'Р', 'щ'},
+        //        {'З', 'э'},
+        //        {'Ё', 'ф'},
+        //        {'Т', 'ъ'},
+
+
+        //    };
+
+        //string decryptedText1 = string.Empty;
+        //foreach (var c in FileContent1)
+        //{
+        //    if (K1.ContainsKey(c))
+        //    {
+        //        decryptedText1 += K1[c];
+        //    }
+        //    else
+        //    {
+        //        decryptedText1 += c;
+        //    }
+        //}
+
+
+        //return (decryptedText.ToString(), decryptedText1);
+
+        string decryptedText = "";
+        int shift = 10;
+
+        foreach (char c in FileContent1)
         {
-            if (K.ContainsKey(c))
+            if (char.IsLetter(c))
             {
-                decryptedText.Append(K[c]);
+                char decryptedChar = (char)((c - shift - 'А' + 32) % 32 + 'А');
+                decryptedText += decryptedChar;
             }
             else
             {
-                decryptedText.Append(c);
+                decryptedText += c;
             }
         }
 
-
-        var FileContent1 = file1.ToUpper();
-        var K1 = new Dictionary<char, char>
-            {
-                {'П', 'в'},
-                {'Й', 'е'},
-                {'С', 'д'},
-                {'Ж', 'н'},
-                {'Х', 'и'},
-                {'З', 'о'},
-                {'Б', 'с'},
-                {'Ш', 'ч'},
-                {'Д', 'л'},
-                {'Г', 'к'},
-                {'Р', 'г'},
-                {'Н', 'а'},
-                {'Е', 'м'},
-                {'И', 'п'},
-                {'Ф', 'ь'},
-                {'Ь', 'ю'},
-                {'В', 'т'},
-                {'А', 'р'},
-                {'О', 'б'},
-                {'У', 'ы'},
-                {'К', 'ж'},
-                {'Э', 'я'},
-                {'Ч', 'ц'},
-                {'М', 'у'},
-                {'Ы', 'э'},
-                {'Ц', 'й'},
-                {'Ъ', 'щ'},
-                {'Щ', 'ш'},
-                {'Л', 'з'},
-                {'Ю', 'ф'},
-                {'Я', 'х'},
-                {'Т', 'ъ'},
-
-
-            };
-
-        StringBuilder decryptedText1 = new StringBuilder();
-        foreach (var c in FileContent1)
-        {
-            if (K1.ContainsKey(c))
-            {
-                decryptedText.Append(K[c]);
-            }
-            else
-            {
-                decryptedText.Append(c);
-            }
-        }
-
-
-        return (decryptedText.ToString(), decryptedText1.ToString());
-  }
+        return decryptedText;
+    }
 
   /* Main method */
   public static void Main()
@@ -185,11 +188,11 @@ internal abstract class Program
     var fileName = "input1.txt";
     var fileName1 = "input2.txt";
     Console.WriteLine("Counting letters in the first text:");
-    foreach (var sym in s_frequencyMethod(fileName))
+    foreach (var sym in s_frequencyMethod(fileName1))
       Console.WriteLine(sym.Key + " " + sym.Value);
 
     Console.WriteLine("Method second");
-    Console.WriteLine(Program.s_decryptionMethod(fileName, fileName1).Item1);
-    Console.WriteLine(s_decryptionMethod(fileName, fileName1).Item2);
+    //Console.WriteLine(s_decryptionMethod(fileName, fileName1).Item1);
+    Console.WriteLine(s_decryptionMethod(fileName, fileName1));
   }
 }
