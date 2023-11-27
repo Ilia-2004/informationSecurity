@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace secondTask;
 internal abstract class Program
@@ -9,7 +10,7 @@ internal abstract class Program
   // files path
   private const string Path = @".\Contents\";
 
-  // the method of calculating the frequency of letters in the text
+  // the method of calculating the frequency of letters in a text
   private static Dictionary<char, double> s_frequencyMethod(string fileName) 
   {
     /* переменные */ 
@@ -41,97 +42,154 @@ internal abstract class Program
     }
 
     // вывод списка букв
-    Console.WriteLine("Вывод списка букв:"); 
-    foreach (var letter in countLetters)
-      Console.WriteLine(letter.Key + " " + letter.Value);
-
-    // вывод количества букв
-    numberLetters = countLetters.Sum(x => x.Value);
-    Console.WriteLine("Колличество букв");
-    Console.WriteLine(numberLetters);
-    Console.WriteLine();
+    Console.WriteLine("Вывод списка букв: ");
+    foreach (var sym in countLetters)
+      Console.WriteLine(sym.Key + " " + sym.Value);
 
     // подсчёт частотности
     foreach (var letter in countLetters)
       frequencyLetters[letter.Key] = Math.Round((letter.Value / (double)numberLetters) * 100, 2);
 
+    // вывод списка букв
+    Console.WriteLine("Вывод списка частоты букв: ");
+    foreach (var sym in frequencyLetters)
+      Console.WriteLine(sym.Key + " " + sym.Value);
+
     // сортировка словаря
     var sortedFrequencyLetters = frequencyLetters.OrderByDescending(x => x.Value);
     sortedFrequencyLettersDictionary = sortedFrequencyLetters.ToDictionary(x => x.Key, x => x.Value);
 
-    // вывод отсортированного словаря
-    Console.WriteLine("Вывод отсортерованного списка:");
-    foreach (var item in sortedFrequencyLettersDictionary)
-      Console.WriteLine($"{item.Key}: {item.Value}%");
+    // вывод списка букв
+    Console.WriteLine("Вывод отсортированного списка частоты букв: ");
+    foreach (var sym in sortedFrequencyLettersDictionary)
+      Console.WriteLine(sym.Key + " " + sym.Value);
 
-    Console.WriteLine("---------------");
+    Console.WriteLine("---------------------");
 
     return sortedFrequencyLettersDictionary;
   }
 
   // decryption method
-  private static string s_decryptionMethod()
+  private static (string, string) s_decryptionMethod(string file, string file1)
   {
-    /* переменные */
-    // чтение изходного текста
-    var inputText = File.ReadAllText($"{Path}input2.txt");
-    // подсчёт частотности исходного текста
-    var resultFrequencyMethod = s_frequencyMethod("input2.txt");
-    // присваивания алфавита по частотности
-    var listLetterFrequencies = File.ReadAllText($"{Path}AlphabetFrequencies.txt").ToList();
-    // список сапоставления символов
-    var requenceiesLettersToInput = new Dictionary<char, char>();
-    // строка результата
-    var resultDecryptionInputText = string.Empty;
-      
-    // добавление символов в список сапоставления
-    foreach (var sym in resultFrequencyMethod)
-    {
-      foreach (var symbol in listLetterFrequencies)
-      {
-        if (!requenceiesLettersToInput.ContainsKey(sym.Key) && 
-            !requenceiesLettersToInput.ContainsValue(symbol))
+        var FileContent = file.ToUpper();
+        var K = new Dictionary<char, char>
+            {
+
+                { 'В', ' ' },
+                { 'Л', 'о' },
+                { 'Ц', 'н' },
+                { 'Ф', 'а' },
+                { 'А', 'и' },
+                { 'С', 'т' },
+                { 'И', 'д' },
+                { 'Ш', 'у' },
+                { 'Ы', 'к' },
+                { 'У', 'в' },
+                { 'Щ', 'г' },
+                { 'Е', 'э' },
+                { 'Г', 'у' },
+                { 'Э', 'ж' },
+                { 'Ъ', 'ы' },
+                { 'Ж', 'р' },
+                { 'Ч', 'з' },
+                { 'О', 'с' },
+                { 'Я', 'п' },
+                { 'Б', 'х' },
+                { 'Д', 'й' },
+                { 'Ь', 'л' },
+                { 'З', 'м' },
+                { 'Ю', 'ь' },
+                { 'Н', 'б' },
+                { ' ', 'ю' },
+                { 'К', 'я' },
+                { 'Т', 'ш' },
+                { 'Х', 'щ' },
+                { 'П', 'ч' },
+                { 'Й', 'ц' }
+
+            };
+        StringBuilder decryptedText = new StringBuilder();
+        foreach (var c in FileContent)
         {
-          requenceiesLettersToInput.Add(sym.Key, symbol);
-          continue;
+            if (K.ContainsKey(c))
+            {
+                decryptedText.Append(K[c]);
+            }
+            else
+            {
+                decryptedText.Append(c);
+            }
         }
-      }
-    }
 
-    // вывод списка сапоставления
-    Console.WriteLine("Вывод списка сапоставления: ");
-    foreach (var sym in requenceiesLettersToInput)
-      Console.WriteLine(sym.Key + " " + sym.Value);
-    Console.WriteLine();
-      
-    // добавление в строку результата
-    //foreach (var sym in inputText)
-    //{
-    //  //Console.WriteLine(sym);
-    //  if (requenceiesLettersToInput.ContainsKey(sym))
-    //  {
-    //    resultDecryptionInputText += requenceiesLettersToInput[sym];
-    //    //Console.WriteLine(resultDecryptionInputText + " second");
-    //  }
-    //  else if (Convert.ToString(sym).ToUpper() == "Ё")
-    //    resultDecryptionInputText += "Ё";
-    //  else resultDecryptionInputText += sym; 
-    //}
-        
-    // вывод результата
-    //Console.WriteLine(resultDecryptionInputText);
 
-    return resultDecryptionInputText;
+        var FileContent1 = file1.ToUpper();
+        var K1 = new Dictionary<char, char>
+            {
+                {'П', 'в'},
+                {'Й', 'е'},
+                {'С', 'д'},
+                {'Ж', 'н'},
+                {'Х', 'и'},
+                {'З', 'о'},
+                {'Б', 'с'},
+                {'Ш', 'ч'},
+                {'Д', 'л'},
+                {'Г', 'к'},
+                {'Р', 'г'},
+                {'Н', 'а'},
+                {'Е', 'м'},
+                {'И', 'п'},
+                {'Ф', 'ь'},
+                {'Ь', 'ю'},
+                {'В', 'т'},
+                {'А', 'р'},
+                {'О', 'б'},
+                {'У', 'ы'},
+                {'К', 'ж'},
+                {'Э', 'я'},
+                {'Ч', 'ц'},
+                {'М', 'у'},
+                {'Ы', 'э'},
+                {'Ц', 'й'},
+                {'Ъ', 'щ'},
+                {'Щ', 'ш'},
+                {'Л', 'з'},
+                {'Ю', 'ф'},
+                {'Я', 'х'},
+                {'Т', 'ъ'},
+
+
+            };
+
+        StringBuilder decryptedText1 = new StringBuilder();
+        foreach (var c in FileContent1)
+        {
+            if (K1.ContainsKey(c))
+            {
+                decryptedText.Append(K[c]);
+            }
+            else
+            {
+                decryptedText.Append(c);
+            }
+        }
+
+
+        return (decryptedText.ToString(), decryptedText1.ToString());
   }
 
   /* Main method */
-  public static void Main(string[] args)
+  public static void Main()
   {
     var fileName = "input1.txt";
+    var fileName1 = "input2.txt";
     Console.WriteLine("Counting letters in the first text:");
     foreach (var sym in s_frequencyMethod(fileName))
       Console.WriteLine(sym.Key + " " + sym.Value);
-    //Console.WriteLine("Method second");
-    //s_decryptionMethod();
+
+    Console.WriteLine("Method second");
+    Console.WriteLine(Program.s_decryptionMethod(fileName, fileName1).Item1);
+    Console.WriteLine(s_decryptionMethod(fileName, fileName1).Item2);
   }
 }
