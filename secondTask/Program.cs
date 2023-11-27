@@ -172,7 +172,7 @@ internal abstract class Program
       Console.WriteLine(sym.Key + " " + sym.Value);
 
     Console.WriteLine("Method second");
-    //Console.WriteLine(s_decryptionMethod(fileName, fileName1).Item1);
-    Console.WriteLine(s_decryptionMethod(fileName, fileName1).Item2);
+    Console.WriteLine(s_decryptionMethod(fileName, fileName1).Item1);
+    //Console.WriteLine(s_decryptionMethod(fileName, fileName1).Item2);
   }
 }
