@@ -1,4 +1,5 @@
-﻿using System; 
+﻿using System;
+using System.IO;
 
 namespace fourTask;
 internal abstract class Program
@@ -7,15 +8,34 @@ internal abstract class Program
   private const string Path = @".\Contents\";
 
   /* Methods */
-  private static string s_encryptionMethod(string pathFile)
+  private static string s_encryptionMethod(string nameFile)
   {
+    var contentKey = File.ReadAllText($"{Path}Key.txt");
+    var contentInputText = File.ReadAllText($"{Path}{nameFile}");
+    var outputText = string.Empty;
+    var keyIndex = 0; 
+    
+    for (int i = 0; i < contentInputText.Length; i++)
+    {
+      var a = (int)contentInputText[i];
+      var b = (int)contentKey[keyIndex];
+      int c = ((a & b) | (~a & ~b)) % 32 + 'а';
+      
+      outputText += (char)c;   
+      keyIndex++;
 
-    return "str";
+      if (keyIndex >= contentKey.Length) keyIndex = 0;
+    }
+
+    return outputText;
   }
+
+ 
 
   /* Main method */
   public static void Main()
   {
-    Console.WriteLine("Hello");
+    var inputText = "Input.txt";
+    s_encryptionMethod(inputText);
   }
 }

@@ -1,0 +1,6 @@
+D:\isp-42\Krasnenkov\informationSecurity\fourTask\bin\Debug\fourTask.exe
+D:\isp-42\Krasnenkov\informationSecurity\fourTask\bin\Debug\fourTask.pdb
+D:\isp-42\Krasnenkov\informationSecurity\fourTask\obj\Debug\fourTask.csproj.AssemblyReference.cache
+D:\isp-42\Krasnenkov\informationSecurity\fourTask\obj\Debug\fourTask.csproj.CoreCompileInputs.cache
+D:\isp-42\Krasnenkov\informationSecurity\fourTask\obj\Debug\fourTask.exe
+D:\isp-42\Krasnenkov\informationSecurity\fourTask\obj\Debug\fourTask.pdb
