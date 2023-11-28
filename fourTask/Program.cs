@@ -15,11 +15,11 @@ internal abstract class Program
     var outputText = string.Empty;
     var keyIndex = 0; 
     
-    for (int i = 0; i < contentInputText.Length; i++)
+    for (var i = 0; i < contentInputText.Length; i++)
     {
       var a = (int)contentInputText[i];
       var b = (int)contentKey[keyIndex];
-      int c = ((a & b) | (~a & ~b)) % 32 + 'а';
+      var c = ((a & b) | (~a & ~b)) % 32 + 'а';
       
       outputText += (char)c;   
       keyIndex++;
@@ -27,7 +27,8 @@ internal abstract class Program
       if (keyIndex >= contentKey.Length) keyIndex = 0;
     }
 
-    using (var sw = new StreamWriter($"{Path}Out.txt")) { sw.Write(outputText.ToLower()); }
+    using var sw = new StreamWriter($"{Path}Out.txt");
+    sw.Write(outputText.ToLower());
 
     return outputText;
   }
@@ -40,11 +41,11 @@ internal abstract class Program
     var resultText = string.Empty;
     var keyIndex = 0; 
     
-    for (int i = 0; i < contentInputText.Length; i++)
+    for (var i = 0; i < contentInputText.Length; i++)
     {
       var a = (int)contentInputText[i];
       var b = (int)contentKey[keyIndex];
-      int c = ((a & b) | (~a & ~b)) % 32 + 'а';
+      var c = ((a & b) | (~a & ~b)) % 32 + 'а';
       
       resultText += (char)c;   
       keyIndex++;
@@ -52,7 +53,8 @@ internal abstract class Program
       if (keyIndex >= contentKey.Length) keyIndex = 0;
     }
 
-    using (var sw = new StreamWriter($"{Path}Result.txt")) { sw.Write(resultText.ToLower()); }
+    using var sw = new StreamWriter($"{Path}Result.txt");
+    sw.Write(resultText.ToLower());
 
     return resultText;
   }
@@ -60,7 +62,7 @@ internal abstract class Program
   /* Main method */
   public static void Main()
   {
-    var inputText = "Input.txt";
+    const string inputText = "Input.txt";
     Console.WriteLine(s_encryptionMethod(inputText));
     Console.WriteLine();
     Console.WriteLine(s_decryptionMethod(inputText));
