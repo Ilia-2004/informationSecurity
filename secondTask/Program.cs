@@ -7,10 +7,10 @@ using System.Text;
 namespace secondTask;
 internal abstract class Program
 {
-  // files path
+  // путь к файлам 
   private const string Path = @".\Contents\";
 
-  // the method of calculating the frequency of letters in a text
+  // метод для подсчёта частотности символов в тексте
   private static Dictionary<char, double> s_frequencyMethod(string fileName) 
   {
     /* переменные */ 
@@ -47,7 +47,7 @@ internal abstract class Program
     return sortedFrequencyLettersDictionary;
   }
 
-  // decryption method
+  // метод расшифровки 
   private static (string, string) s_decryptionMethod(string file, string file1)
   {
     var fileContent = File.ReadAllText($"{Path}{file}").ToUpper();
@@ -139,7 +139,7 @@ internal abstract class Program
     return (decryptedText.ToString(), decryptedText1);
   }
 
-  /* Main method */
+  /* Главный метод */
   public static void Main()
   {
     const string fileName = "input1.txt";

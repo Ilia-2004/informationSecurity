@@ -6,99 +6,122 @@ using System.Linq;
 namespace informationSecurity;
 internal abstract class Program
 {
-  /* Methods */
-  // files path
+  // путь к файлам 
   private const string Path = @".\Contents\";
 
-  // encryption method
+  /* Методы */
+  // метод шифрования
   private static (string, Dictionary<string, string>) s_encryptionMethod()
   {
-    /* Variables */
-    // the input text 
+    /* переменные */
+    // вводимый текст 
     var inputText = File.ReadAllText($"{Path}Input.txt");
-    // the encryption key
+    // содержание ключа
     var stringKey = File.ReadAllText($"{Path}Key.txt");
-    // the divided encryption key
+    // разделённый ключ
     var arrayKey = stringKey.Split(',');
-    // the alphabet of the encryption key
+    // алфавит ключа
     var alphabetKey = arrayKey.ToDictionary(t => t.Split('-')[0].Trim(),
       t => t.Split('-')[1]);
-    // the variable for output text
+    // переменная для зашифрованного текста
     var outputText = string.Empty; 
       
-    // encryption of the input text
+    // шифрование текста
     foreach (var symbol in inputText)
     {
+      // проверяем, есть символ содержится в алфавите ключа
       if (alphabetKey.ContainsKey(Convert.ToString(symbol))) 
+        // добавляем зашифрованный символ в переменную
         outputText += alphabetKey[Convert.ToString(symbol)]; 
-      else outputText += '-';
+      else
+        // иначе добавляем "-" в переменную
+        outputText += '-';
     }
-      
-    // writing output text to a file 
-    using (var sw = new StreamWriter($"{Path}Out.txt")) 
-    { sw.Write(outputText); }
+
+    // создание переменной файла для зашифрованного текста
+    using var sw = new StreamWriter($"{Path}Out.txt");
+    // добавление текста в файл
+    sw.Write(outputText);
     
+    // возвращаем зашифрованный текст и алфавит ключа
     return (outputText.ToUpper(), alphabetKey);
   }
 
-  // decryption method
+  // метод для расшифровки
   private static string s_decryptionMethod()
   {
-    /* Variables */
-    // the repeated letters
-    const string aloneSymbols = "уъьяфаю";
-    // the encrypted text
+    /* переменные */
+    // единичные буквы шифрования
+    const string aloneLetters = "уъьяфаю";
+    // зашифрованный текст
     var stringOut = s_encryptionMethod().Item1.ToLower();
-    // the alphabet of the encryption key
+    // алфавит шифрования
     var alphabetKey = s_encryptionMethod().Item2;
-    // the reverse alphabet of the encryption key
+    // словарь для ключа дешифровки
     var reverseAlphabetKey = new Dictionary<string, string>();
-    // the result text
+    // переменная для расшифрованного текста
     var stringResult = string.Empty;
 
-    // extended reverse alphabet
+    // меняем алфавит шифрования
     foreach (var element in alphabetKey)
+      // присваиваем содержание к ключу, а сам ключ к содержанию
       reverseAlphabetKey[element.Value] = element.Key;
       
-    // decryption of the text
+    // дешифруем текст
     for (var i = 0; i < stringOut.Length; i++)
     {
-      if (aloneSymbols.Contains(stringOut[i]))
+      // првоеряем, есть ли буква есть в списке единичных букв 
+      if (aloneLetters.Contains(stringOut[i]))
       { 
+        // проверяем, является ли символ буквой "а"
         if (stringOut[i] == 'а')
         {
+          // проверяем, является ли последующий символ буквой "м"
           if (stringOut[i + 1] == 'м') 
           {
+            // составляем последовательность символов для дешифровки
             var key = $"{stringOut[i]}{stringOut[++i]}";
+            // присваиваем результат последовательностей символов
             stringResult += $"{reverseAlphabetKey[key]}";
-            i += 1;
+            // прибавляем индекс
+            i++;
           }
           else 
+            // иначе присваевам символ дешифровки под "а"
             stringResult += reverseAlphabetKey[Convert.ToString(stringOut[i])]; 
         }
         else 
+          // если символ не является "а", то присваеваем символ дешифровки 
           stringResult += reverseAlphabetKey[Convert.ToString(stringOut[i])];
       }
-      else if (stringOut[i] == '-') stringResult += " ";
+      // проверяем, является ли символ "-"
+      else if (stringOut[i] == '-') 
+        // присваеваем пробел
+        stringResult += " ";
       else
       {
+        // составляем ключ дешифровки из символов
         var key = $"{stringOut[i]}{stringOut[++i]}";
+        // присваемваем элемент дешифровки 
         stringResult += $"{reverseAlphabetKey[key]}";
       }
     }
-      
-    // writing the result text to a file
-    using (var sw = new StreamWriter($"{Path}Result.txt")) { sw.Write(stringResult.ToLower()); }
 
+    // создаём переменную файла для расшифрованного текста
+    using var sw = new StreamWriter($"{Path}Result.txt");
+    // заполняем файл
+    sw.Write(stringResult.ToLower());
+
+    // возвращаем расшифрованный текст
     return stringResult.ToLower(); 
   }
 
-    /* Main method */
+    /* Главный метод */
   public static void Main()
   {
-    // output encryption text
-    Console.WriteLine($"Encryption text is:\n{s_encryptionMethod().Item1}\n");
-    // output decryption text
-    Console.WriteLine($"Decryption text is:\n{s_decryptionMethod()}");
+    // вывод зашифрованного текста
+    Console.WriteLine($"Зашифрованный текст:\n{s_encryptionMethod().Item1}\n");
+    // вывод расшифрованного текста
+    Console.WriteLine($"Расшифрованный текст:\n{s_decryptionMethod()}");
   }
 }

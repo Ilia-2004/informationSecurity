@@ -4,43 +4,47 @@ using System;
 namespace thirdTask;
 internal abstract class Program
 {
-  /* Methods */
-  // files path
+  // путь к файлам
   private const string Path = @".\Contents\";
 
-  // encryption method
+  /* Методы */
+  // метод шифрования
   private static string s_encryptionMethod()
   {
-    /* Variables */
-    // the input text
+    /* переменные */
+    // вводимый текст
     var inputText = File.ReadAllText($"{Path}Input.txt");
-    // reversing input text
+    // создаём массив из текста
     var reversedInputText = inputText.ToCharArray();
+    // переварачиваем вводимый текст
     Array.Reverse(reversedInputText);
-    // the reverse input text
+    // присваеваем изменённый текст
     var reversedInputTextString = new string(reversedInputText);
-      
-    // the output text
+    // переменная для зашифрованного текста
     var outputText = string.Empty;
-    // the length of the reverse input text
+    // длина изменённого текста
     var lengthReversedInputTextString = reversedInputTextString.Length;
-    // the variables of the output file
+    // присваиваем файл для зашифрованного текста
     using var sw = new StreamWriter($"{Path}Out.txt");
     
-    // division into 6 blocks
+    // разбиваем текст на 6 блоков
     for (var i = 0; i < lengthReversedInputTextString; i += 6)
     {
+      // 
       var remainingLength = Math.Min(6, lengthReversedInputTextString - i);
+      // 
       var blockElementOutputText = reversedInputTextString.Substring(i, remainingLength);
+      // присваиваем зашифрованный текст
       outputText += $"{blockElementOutputText}\n";
     }
     
-    // writing output text to a file 
+    // добавляем зашифрованный текст в файл
     sw.WriteLine(outputText);
 
+    // возвращаем зашифрованный текст
     return outputText;
   }
     
-  /* Main method */
-  public static void Main() => Console.WriteLine($"Encryption text is:\n{s_encryptionMethod()}");
+  /* Главный метод */
+  public static void Main() => Console.WriteLine($"Зашифрованный текст:\n{s_encryptionMethod()}");
 }
