@@ -1,0 +1,7 @@
+D:\isp-42\Krasnenkov\informationSecurity\fifthTask\bin\Debug\fifthTask.exe.config
+D:\isp-42\Krasnenkov\informationSecurity\fifthTask\bin\Debug\fifthTask.exe
+D:\isp-42\Krasnenkov\informationSecurity\fifthTask\bin\Debug\fifthTask.pdb
+D:\isp-42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.AssemblyReference.cache
+D:\isp-42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.CoreCompileInputs.cache
+D:\isp-42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.exe
+D:\isp-42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.pdb
