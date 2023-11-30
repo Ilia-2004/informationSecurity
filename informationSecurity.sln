@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fourthTask", "fourTask\four
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fifthTask", "fifthTask\fifthTask.csproj", "{AB68E82A-DDAE-4BA9-A22C-D2FC71844468}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "digitalSignatureAlgorithm", "digitalSignatureAlgorithm\digitalSignatureAlgorithm.csproj", "{E583EE91-4CFD-4F93-91A7-2A39ED4E1964}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AB68E82A-DDAE-4BA9-A22C-D2FC71844468}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB68E82A-DDAE-4BA9-A22C-D2FC71844468}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB68E82A-DDAE-4BA9-A22C-D2FC71844468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E583EE91-4CFD-4F93-91A7-2A39ED4E1964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E583EE91-4CFD-4F93-91A7-2A39ED4E1964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E583EE91-4CFD-4F93-91A7-2A39ED4E1964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E583EE91-4CFD-4F93-91A7-2A39ED4E1964}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
