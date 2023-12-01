@@ -5,3 +5,11 @@ D:\isp-42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.As
 D:\isp-42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.CoreCompileInputs.cache
 D:\isp-42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.exe
 D:\isp-42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.pdb
+F:\Ilya\Programming\informationSecurity\fifthTask\bin\Debug\fifthTask.exe.config
+F:\Ilya\Programming\informationSecurity\fifthTask\bin\Debug\fifthTask.exe
+F:\Ilya\Programming\informationSecurity\fifthTask\bin\Debug\fifthTask.pdb
+F:\Ilya\Programming\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.AssemblyReference.cache
+F:\Ilya\Programming\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.SuggestedBindingRedirects.cache
+F:\Ilya\Programming\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.CoreCompileInputs.cache
+F:\Ilya\Programming\informationSecurity\fifthTask\obj\Debug\fifthTask.exe
+F:\Ilya\Programming\informationSecurity\fifthTask\obj\Debug\fifthTask.pdb
