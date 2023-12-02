@@ -13,3 +13,10 @@ F:\Ilya\Programming\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.Sug
 F:\Ilya\Programming\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.CoreCompileInputs.cache
 F:\Ilya\Programming\informationSecurity\fifthTask\obj\Debug\fifthTask.exe
 F:\Ilya\Programming\informationSecurity\fifthTask\obj\Debug\fifthTask.pdb
+D:\ISP - 42\Krasnenkov\informationSecurity\fifthTask\bin\Debug\fifthTask.exe.config
+D:\ISP - 42\Krasnenkov\informationSecurity\fifthTask\bin\Debug\fifthTask.exe
+D:\ISP - 42\Krasnenkov\informationSecurity\fifthTask\bin\Debug\fifthTask.pdb
+D:\ISP - 42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.AssemblyReference.cache
+D:\ISP - 42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.csproj.CoreCompileInputs.cache
+D:\ISP - 42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.exe
+D:\ISP - 42\Krasnenkov\informationSecurity\fifthTask\obj\Debug\fifthTask.pdb
