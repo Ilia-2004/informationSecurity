@@ -1,15 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace informationSecurity;
 internal abstract class Program
 {
   // путь к файлам 
   private const string Path = @".\Contents\";
-
-  /* Методы */
+  
+  #region Methods
   // метод шифрования
   private static (string, Dictionary<string, string>) s_encryptionMethod()
   {
@@ -115,8 +115,9 @@ internal abstract class Program
     // возвращаем расшифрованный текст
     return stringResult.ToLower(); 
   }
-
-    /* Главный метод */
+  #endregion
+  
+  /* Главный метод */
   public static void Main()
   {
     // вывод зашифрованного текста
