@@ -6,20 +6,24 @@ using System.Collections.Generic;
 namespace informationSecurity;
 internal abstract class Program
 {
+  #region VariablesAndConstants
   // путь к файлам 
   private const string Path = @".\Contents\";
+  // единичные буквы шифрования
+  private const string AloneLetters = "уъьяфаю";
   // вводимый текст 
-  private string inputText = File.ReadAllText($"{Path}Input.txt");
+  private static readonly string InputText = File.ReadAllText($"{Path}Input.txt");
   // содержание ключа
-  private string stringKey = File.ReadAllText($"{Path}Key.txt");
+  private static readonly string StringKey = File.ReadAllText($"{Path}Key.txt");
+  #endregion
   
   #region Methods
-  // метод шифрования
+  /* Метод шифрования */
   private static (string, Dictionary<string, string>) s_encryptionMethod()
   {
     /* переменные */
     // разделённый ключ
-    var arrayKey = stringKey.Split(',');
+    var arrayKey = StringKey.Split(',');
     // алфавит ключа
     var alphabetKey = arrayKey.ToDictionary(t => t.Split('-')[0].Trim(),
       t => t.Split('-')[1]);
@@ -27,7 +31,7 @@ internal abstract class Program
     var outputText = string.Empty; 
       
     // шифрование текста
-    foreach (var symbol in inputText)
+    foreach (var symbol in InputText)
     {
       // проверяем, есть символ содержится в алфавите ключа
       if (alphabetKey.ContainsKey(Convert.ToString(symbol))) 
@@ -47,12 +51,10 @@ internal abstract class Program
     return (outputText.ToUpper(), alphabetKey);
   }
 
-  // метод для расшифровки
+  /* Метод для расшифровки */
   private static string s_decryptionMethod()
   {
     /* переменные */
-    // единичные буквы шифрования
-    const string aloneLetters = "уъьяфаю";
     // зашифрованный текст
     var stringOut = s_encryptionMethod().Item1.ToLower();
     // алфавит шифрования
@@ -71,7 +73,7 @@ internal abstract class Program
     for (var i = 0; i < stringOut.Length; i++)
     {
       // првоеряем, есть ли буква есть в списке единичных букв 
-      if (aloneLetters.Contains(stringOut[i]))
+      if (AloneLetters.Contains(stringOut[i]))
       { 
         // проверяем, является ли символ буквой "а"
         if (stringOut[i] == 'а')
@@ -118,7 +120,7 @@ internal abstract class Program
   #endregion
   
   /* Главный метод */
-  public static void Main()
+  private static void Main()
   {
     // вывод зашифрованного текста
     Console.WriteLine($"Зашифрованный текст:\n{s_encryptionMethod().Item1}\n");
