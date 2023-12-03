@@ -8,16 +8,16 @@ internal abstract class Program
 {
   // путь к файлам 
   private const string Path = @".\Contents\";
+  // вводимый текст 
+  private string inputText = File.ReadAllText($"{Path}Input.txt");
+  // содержание ключа
+  private string stringKey = File.ReadAllText($"{Path}Key.txt");
   
   #region Methods
   // метод шифрования
   private static (string, Dictionary<string, string>) s_encryptionMethod()
   {
     /* переменные */
-    // вводимый текст 
-    var inputText = File.ReadAllText($"{Path}Input.txt");
-    // содержание ключа
-    var stringKey = File.ReadAllText($"{Path}Key.txt");
     // разделённый ключ
     var arrayKey = stringKey.Split(',');
     // алфавит ключа
