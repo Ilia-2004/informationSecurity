@@ -42,10 +42,8 @@ internal abstract class Program
         outputText += '-';
     }
 
-    // создание переменной файла для зашифрованного текста
-    using var sw = new StreamWriter($"{Path}Out.txt");
     // добавление текста в файл
-    sw.Write(outputText);
+    File.WriteAllText($"{Path}Out.txt", outputText);
     
     // возвращаем зашифрованный текст и алфавит ключа
     return (outputText.ToUpper(), alphabetKey);
