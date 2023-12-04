@@ -118,7 +118,7 @@ internal abstract class Program
   #endregion
   
   /* Главный метод */
-  private static void Main()
+  public static void Main()
   {
     // вывод зашифрованного текста
     Console.WriteLine($"Зашифрованный текст:\n{s_encryptionMethod().Item1}\n");
