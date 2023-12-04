@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Collections.Generic;
 
 namespace secondTask;
 internal abstract class Program
 {
     #region VariablesAndConstants
+    // код специальных символов
+    private const int CodeSymbol = 32; 
     // путь к файлам 
     private const string Path = @".\Contents\";
     // присваивание русского алфавита
@@ -15,7 +17,7 @@ internal abstract class Program
     #endregion
 
     #region Methods
-    // метод для подсчёта частотности символов в тексте
+    /* Метод для подсчёта частотности символов в тексте */
     private static Dictionary<char, double> s_frequencyMethod(string fileName)
     {
         /* переменные */
@@ -29,31 +31,40 @@ internal abstract class Program
 
         // подсчёт букв в тексте
         foreach (var letter in contentInputText.Where(letter =>
-                   letter >= 32).Where(letter => Alphabet.Contains(letter))) // const
+                   letter >= CodeSymbol).Where(letter => Alphabet.Contains(letter)))
         {
+            // если буква есть в словаре
             if (countLetters.ContainsKey(letter))
+                // прибавить колличество
                 countLetters[letter]++;
             else
+                // добавляем букву в список
                 countLetters.Add(letter, 1);
         }
 
         // подсчёт частотности
         var numberLetters = countLetters.Sum(x => x.Value);
+        // посчёт частоты букв
         foreach (var letter in countLetters)
             frequencyLetters[letter.Key] = Math.Round((letter.Value / (double)numberLetters) * 100, 2);
 
         // сортировка словаря
         var sortedFrequencyLetters = frequencyLetters.OrderByDescending(x => x.Value);
+        // перевод списка в словарь
         var sortedFrequencyLettersDictionary = sortedFrequencyLetters.ToDictionary(x => x.Key, x => x.Value);
 
+        // возвращение списка чатотности
         return sortedFrequencyLettersDictionary;
     }
 
-    // метод расшифровки 
+    /* Метод расшифровки */
     private static (string, string) s_decryptionMethod(string file, string file1)
     {
-      var fileContent = File.ReadAllText($"{Path}{file}").ToUpper();
-      var k = new Dictionary<char, char>
+      /* переменные */ 
+      // первый вводимый текст 
+      var inputText = File.ReadAllText($"{Path}{file}").ToUpper();
+      // алфавит-ключ к шифрованию
+      var alphabetKey = new Dictionary<char, char>
       {
         { 'В', ' ' }, { 'Л', 'о' }, { 'Ц', 'н' },
         { 'Ф', 'а' }, { 'А', 'и' }, { 'С', 'т' },
@@ -64,54 +75,67 @@ internal abstract class Program
         { 'Я', 'п' }, { 'Б', 'х' }, { 'Д', 'й' },
         { 'Ь', 'л' }, { 'З', 'м' }, { 'Ю', 'ь' },
         { 'Н', 'б' }, { ' ', 'ю' }, { 'К', 'я' },
-      { 'Т', 'ш' }, { 'Х', 'щ' }, { 'П', 'ч' },
-      { 'Й', 'ц' }
-    };
+        { 'Т', 'ш' }, { 'Х', 'щ' }, { 'П', 'ч' },
+        { 'Й', 'ц' }
+      };
 
-    var decryptedText = new StringBuilder();
-        foreach (var c in fileContent)
-            decryptedText.Append(k.TryGetValue(c, out var value) ? value : c);
+      // переменная для первого зашифрованного текста
+      var encryptionText = new StringBuilder();
+      // разшифровка первого текста
+      foreach (var c in inputText)
+        encryptionText.Append(alphabetKey.TryGetValue(c, out var value) ? value : c);
 
-        var fileContent1 = File.ReadAllText($"{Path}{file1}").ToUpper();
-        var k1 = new Dictionary<char, char>
-    {
-      {'П', 'ч'}, {'Й', 'с'}, {'С', 'щ'},
-      {'Ж', 'о'}, {'Х', 'э'}, {'З', 'п'},
-      {'Б', 'й'}, {'Ш', 'а'}, {'Д', 'м'},
-      {'Г', 'л'}, {'Р', 'е'}, {'Н', 'в'},
-      {'Е', 'н'}, {'И', 'р'}, {'Ф', 'ь'},
-      {'Ь', 'д'}, {'В', 'к'}, {'А', 'и'},
-      {'О', 'ц'}, {'У', 'ы'}, {'К', 'т'},
-      {'Э', 'е'}, {'Ч', 'я'}, {'М', 'ф'},
-      {'Ы', 'г'}, {'Ц', 'ю'}, {'Ъ', 'в'},
-      {'Щ', 'б'}, {'Л', 'у'}, {'Ю', 'ж'},
-      {'Я', 'з'}, {'Т', 'ъ'},
-    };
+      // второй вводимый текст 
+      var inputText1 = File.ReadAllText($"{Path}{file1}").ToUpper();
+      // алфавит-ключ для второго текста 
+      var alphabetKey1 = new Dictionary<char, char>
+      {
+        {'П', 'ч'}, {'Й', 'с'}, {'С', 'щ'},
+        {'Ж', 'о'}, {'Х', 'э'}, {'З', 'п'},
+        {'Б', 'й'}, {'Ш', 'а'}, {'Д', 'м'},
+        {'Г', 'л'}, {'Р', 'е'}, {'Н', 'в'},
+        {'Е', 'н'}, {'И', 'р'}, {'Ф', 'ь'},
+        {'Ь', 'д'}, {'В', 'к'}, {'А', 'и'},
+        {'О', 'ц'}, {'У', 'ы'}, {'К', 'т'},
+        {'Э', 'е'}, {'Ч', 'я'}, {'М', 'ф'},
+        {'Ы', 'г'}, {'Ц', 'ю'}, {'Ъ', 'в'},
+        {'Щ', 'б'}, {'Л', 'у'}, {'Ю', 'ж'},
+        {'Я', 'з'}, {'Т', 'ъ'},
+      };
 
-        var decryptedText1 = string.Empty;
-        foreach (var c in fileContent1)
-        {
-            if (k1.TryGetValue(c, out var value))
-                decryptedText1 += value;
-            else
-                decryptedText1 += c;
-        }
+      // переменная для второго зашифрованного текста
+      var decryptedText1 = string.Empty;
+      // расшифровка второго текста
+      foreach (var c in inputText1)
+      {
+        if (alphabetKey1.TryGetValue(c, out var value))
+          decryptedText1 += value;
+        else
+          decryptedText1 += c;
+      }
 
-        return (decryptedText.ToString(), decryptedText1.ToString());
+      // возвращение расшифрованных текстов
+      return (encryptionText.ToString(), decryptedText1.ToString());
     }
     #endregion
 
     /* Главный метод */
     public static void Main()
     {
-        const string fileName = "input1.txt";
-        const string fileName1 = "input2.txt";
-        Console.WriteLine("Подсчёт частотности букв:");
-        foreach (var sym in s_frequencyMethod(fileName1))
-            Console.WriteLine(sym.Key + " " + sym.Value);
+      /* константы */
+      // первый текст
+      const string fileName = "input1.txt";
+      // второй текст
+      const string fileName1 = "input2.txt";
 
-        Console.WriteLine("\nРасшифровка текстов:");
-        Console.WriteLine($"{s_decryptionMethod(fileName, fileName1).Item1}\n");
-        Console.WriteLine(s_decryptionMethod(fileName, fileName1).Item2);
+      // вывод частотности второго текста
+      Console.WriteLine("Подсчёт частотности букв в тексте 2:");
+      foreach (var sym in s_frequencyMethod(fileName1))
+        Console.WriteLine(sym.Key + " " + sym.Value);
+
+      // вывод расшифровки первого и второго текста
+      Console.WriteLine("\nРасшифровка текстов:");
+      Console.WriteLine($"{s_decryptionMethod(fileName, fileName1).Item1}\n");
+      Console.WriteLine(s_decryptionMethod(fileName, fileName1).Item2);
     }
 }
