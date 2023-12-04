@@ -34,9 +34,9 @@ internal abstract class Program
     foreach (var symbol in InputText)
     {
       // проверяем, есть символ содержится в алфавите ключа
-      if (alphabetKey.ContainsKey(Convert.ToString(symbol))) 
+      if (alphabetKey.ContainsKey(Convert.ToString(symbol).ToUpper()))
         // добавляем зашифрованный символ в переменную
-        outputText += alphabetKey[Convert.ToString(symbol)]; 
+        outputText += alphabetKey[Convert.ToString(symbol).ToUpper()]; 
       else
         // иначе добавляем "-" в переменную
         outputText += '-';
